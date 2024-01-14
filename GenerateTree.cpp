@@ -32,6 +32,12 @@ struct Transaction {
   }
 };
 
+struct CoUTListItem {
+  int nodeNumber, nodeSupport, nodeUtility;
+  vector<pair<string, int>> prefixPath;
+};
+
+
 /*
   The label refers to the item’s label,interLink points to the next node of the
   same item, parentLink points to the parent node, and utList is a dictionary
@@ -44,7 +50,7 @@ struct UTreeNode {
   UTreeNode *interLink; 
 
   // transaction id and weight of the node with label in the transaction
-  unordered_map<int, int> utList;
+  vector<pair<int, int>> utList;
 
   unordered_map<string, UTreeNode*> children;
 };
@@ -60,7 +66,7 @@ void insertInTree(const Transaction &transaction, const vector<Item> &itemsList,
   // NOTE: children are stored by label
   // Check if the node has a child with a label of firstItem
   if (node->children.count(firstItem.label) != 0) {
-    node->children[firstItem.label]->utList[transaction.id] = firstItem.value;
+    node->children[firstItem.label]->utList.push_back({transaction.id, firstItem.value});
     // cout << transaction.id <<  " " << firstItem.value << endl;
 
     auto remainItems = vector<Item>(itemsList.begin() + 1, itemsList.end());
@@ -71,7 +77,7 @@ void insertInTree(const Transaction &transaction, const vector<Item> &itemsList,
     UTreeNode *child = new UTreeNode();
     child->label = firstItem.label;
     child->parent = node;
-    child->utList[transaction.id] = firstItem.value;
+    child->utList.push_back({transaction.id, firstItem.value});
 
     if(previousPointer.count(firstItem.label) == 0){
       child->interLink = nullptr;
@@ -189,11 +195,164 @@ void PrintRevisedDatabase(vector<Transaction> &Database) {
   cout << endl;
 }
 
+// TODO: Check if better is their
+vector<pair<int, string>> getItemList(vector<Transaction> &Database, unordered_map<string, int> itemsSupport){
+  unordered_set<string> st;
+  vector<pair<int, string>> result;
+
+  for(auto t: Database){
+    for(auto item: t.items){
+      if(st.count(item.label) == 0){
+        st.insert(item.label);
+        result.push_back({item.support, item.label});
+      }
+    }
+  }
+ 
+  sort(result.begin(), result.end(), [](const pair<int, string> &a, const pair<int, string> &b) { return a.first > b.first; });
+  return result;
+}
+
+vector<pair<string, int>> getPrefixPath(UTreeNode *node, unordered_set<int> &transactionsFound){
+  int maxiCanTake = node->utList.size();
+  vector<pair<string, int>> path;
+
+  auto curr = node->parent;
+  while (curr->parent != nullptr) {
+    string label = curr->label;
+    int weight = 0;
+    for(int i = 0; i < curr->utList.size(); i++){
+      if(transactionsFound.count(curr->utList[i].first) == 0) continue;
+      weight += curr->utList[i].second;
+    }
+
+    path.push_back({label, weight});
+
+    curr = curr->parent;
+  }  
+
+  return path;
+}
+
+vector<CoUTListItem> getCoUTList(string label){
+  vector<CoUTListItem> CoUTList;
+  auto curr = previousPointer[label];
+
+  while(curr){
+    // CoUTListItem
+    CoUTListItem item;
+    item.nodeSupport = curr->utList.size();
+
+    unordered_set<int> transactionsFound;
+
+    int total = 0;
+    for(auto p: curr->utList){
+      transactionsFound.insert(p.first);
+      total += p.second;
+    }
+    item.nodeUtility = total;
+
+    // prefix path
+    item.prefixPath = getPrefixPath(curr, transactionsFound);
+
+    CoUTList.push_back(item);
+
+    curr = curr->interLink;
+  }
+
+  reverse(CoUTList.begin(), CoUTList.end());
+
+  for(int i = 0; i < CoUTList.size(); i++){
+    CoUTList[i].nodeNumber = i + 1;
+  }
+
+  return CoUTList;
+}
+
+// TODO: The return type
+int ECoHUPM(vector<Transaction> &Database, int minUtil, int minCorr, unordered_map<string, int> externalUtility, unordered_map<string, int> itemsSupport){
+
+  PrintOldDatabase(Database);
+
+  // Revising the Database
+  auto RD =
+      generateRevisedDatabase(minUtil, Database, externalUtility, itemsSupport);
+  PrintRevisedDatabase(RD);
+
+  /*
+    Search Space. The proposed ECoHUPM algorithm
+    utilizes a set-enumeration tree as a search space, whose
+    efficiency has been verified in pattern mining. Reversed
+    depth-first search traversal is adopted as shown in Figure 1
+    to facilitate the search tree. Note that the ECoHUPM uses
+    the support descending order to revise database and then to
+    construct the UTtree. Hence, with reversed depth-first
+    search, the mining order for the running example is
+    f≺e≺b≺a≺d≺c
+
+    Utility Tree and Correlation Utility-List Structures.
+    Once the database is revised, the proposed ECoHUPM algorithm constructs the
+    utility tree (UTtree). A UTtree is a concise structure that stores
+    sufficient information for facilitating the mining of Correlated High
+    Utility Itemsets in a single phase.
+  */
+
+  vector<pair<int, string>> itemList = getItemList(RD, itemsSupport);
+
+  cout << "Item List: ";
+  for(auto p: itemList) cout << "(" << p.second << ", " << p.first << ") ";
+  cout << endl;
+
+  // Generate the UTree
+  auto root = generateUTree(RD);
+
+  cout << "Previous List" << endl;
+  auto curr = previousPointer["a"];
+
+  while(curr){
+    cout << "UTList: " << curr->label << endl;
+    for(auto l: curr->utList){
+      cout << l.first << " " << l.second << ", ";
+    }
+    cout << endl;
+
+    curr = curr->interLink;
+  }
+
+  cout << "############################" << endl;
+
+  for(int i = itemList.size() - 1; i >= 0; i--){
+    string X = itemList[i].second;
+
+    vector<CoUTListItem> CoUTList = getCoUTList(X);
+
+    cout << "Label: " << X << " " << CoUTList.size() << endl;
+    // Print the CoUTList
+    for(auto co: CoUTList){
+      cout << "Number: " << co.nodeNumber << endl;
+      cout << "Support: " << co.nodeSupport << endl;
+      cout << "Utility: " << co.nodeUtility << endl;
+      cout << "Path: ";
+      for(auto p: co.prefixPath) cout <<  "(" << p.first << " " << p.second << ") ";
+      cout << endl;
+    }
+    cout << endl;
+
+    // TODO: 7 to 11
+  }
+
+  cout << "############################" << endl;
+}
+
+
 int main() {
   cout << "Tree Generator" << endl;
 
   // We have to also decide the minimum utility
   int minUtil = 90;
+
+  // TODO: What to put it here
+  int minCorr = 10;
 
   // We have a database which has transactions, each transaction has list of
   // items with label and quantity associated with it
@@ -223,46 +382,7 @@ int main() {
       {"a", 8}, {"b", 4}, {"c", 10}, {"d", 9}, {"e", 4}, {"f", 3}, {"g", 2},
   };
 
-  PrintOldDatabase(Database);
-
-  // Revising the Database
-  auto RD =
-      generateRevisedDatabase(minUtil, Database, externalUtility, itemsSupport);
-  PrintRevisedDatabase(RD);
-
-  /*
-    Search Space. The proposed ECoHUPM algorithm
-    utilizes a set-enumeration tree as a search space, whose
-    efficiency has been verified in pattern mining. Reversed
-    depth-first search traversal is adopted as shown in Figure 1
-    to facilitate the search tree. Note that the ECoHUPM uses
-    the support descending order to revise database and then to
-    construct the UTtree. Hence, with reversed depth-first
-    search, the mining order for the running example is
-    f≺e≺b≺a≺d≺c
-
-    Utility Tree and Correlation Utility-List Structures.
-    Once the database is revised, the proposed ECoHUPM algorithm constructs the
-    utility tree (UTtree). A UTtree is a concise structure that stores
-    sufficient information for facilitating the mining of Correlated High
-    Utility Itemsets in a single phase.
-  */
-
-  // Generate the UTree
-  auto root = generateUTree(RD);
-
-  cout << "Previous List" << endl;
-  auto curr = previousPointer["a"];
-
-  while(curr){
-    cout << "UTList: " << curr->label << endl;
-    for(auto l: curr->utList){
-      cout << l.first << " " << l.second << ", ";
-    }
-    cout << endl;
-
-    curr = curr->interLink;
-  }
+  auto coHUPs = ECoHUPM(Database, minUtil, minCorr, externalUtility, itemsSupport);
 
   return 0;
 }
