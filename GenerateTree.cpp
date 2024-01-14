@@ -50,7 +50,7 @@ struct UTreeNode {
   UTreeNode *interLink; 
 
   // transaction id and weight of the node with label in the transaction
-  vector<pair<int, int>> utList;
+  unordered_map<int, int> utList;
 
   unordered_map<string, UTreeNode*> children;
 };
@@ -66,7 +66,7 @@ void insertInTree(const Transaction &transaction, const vector<Item> &itemsList,
   // NOTE: children are stored by label
   // Check if the node has a child with a label of firstItem
   if (node->children.count(firstItem.label) != 0) {
-    node->children[firstItem.label]->utList.push_back({transaction.id, firstItem.value});
+    node->children[firstItem.label]->utList[transaction.id] = firstItem.value;
     // cout << transaction.id <<  " " << firstItem.value << endl;
 
     auto remainItems = vector<Item>(itemsList.begin() + 1, itemsList.end());
@@ -77,7 +77,8 @@ void insertInTree(const Transaction &transaction, const vector<Item> &itemsList,
     UTreeNode *child = new UTreeNode();
     child->label = firstItem.label;
     child->parent = node;
-    child->utList.push_back({transaction.id, firstItem.value});
+    child->utList[transaction.id] = firstItem.value;
+
 
     if(previousPointer.count(firstItem.label) == 0){
       child->interLink = nullptr;
@@ -220,10 +221,11 @@ vector<pair<string, int>> getPrefixPath(UTreeNode *node, unordered_set<int> &tra
   auto curr = node->parent;
   while (curr->parent != nullptr) {
     string label = curr->label;
+
     int weight = 0;
-    for(int i = 0; i < curr->utList.size(); i++){
-      if(transactionsFound.count(curr->utList[i].first) == 0) continue;
-      weight += curr->utList[i].second;
+    for(auto p: transactionsFound){
+      if(curr->utList.count(p) == 0) continue;
+      weight += curr->utList[p];
     }
 
     path.push_back({label, weight});
