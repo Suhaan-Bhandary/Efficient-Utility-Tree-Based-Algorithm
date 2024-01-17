@@ -9,6 +9,8 @@ using namespace std;
 // Input: Revised Database
 // Output: UTree
 
+unordered_set<string> CoHUPs;
+
 struct Item {
   string label;
   int value;
@@ -196,7 +198,7 @@ void PrintRevisedDatabase(vector<Transaction> &Database) {
   cout << endl;
 }
 
-// TODO: Check if better is their
+// ! TODO: Check if better is their
 vector<pair<int, string>> getItemList(vector<Transaction> &Database, unordered_map<string, int> itemsSupport){
   unordered_set<string> st;
   vector<pair<int, string>> result;
@@ -271,8 +273,63 @@ vector<CoUTListItem> getCoUTList(string label){
   return CoUTList;
 }
 
+
+void search(string X, vector<CoUTListItem> &CoUTList, int minUtil, int minCorr){
+  // TODO: is the below structure correct, it stores label
+  unordered_set<string> HUprefixList, prefixList;
+
+  for(auto xNode: CoUTList){
+    for(auto p: xNode.prefixPath){
+      string label = p.first;
+
+      if(xNode.nodeUtility >= minUtil){
+        HUprefixList.insert(label);
+      }
+
+      if(HUprefixList.count(label) == 0){
+        prefixList.insert(label);
+      }
+    }
+  }
+
+  for(auto pi: prefixList){
+    string itemSet = pi + "," + X;    
+
+    // TODO: Scan the CoUTlis(X) to construct the CoUTlist(itemset)
+    vector<CoUTListItem> CoUTListOfItemSet;
+
+    // TODO: How ot calculate this
+    int kulcItemSet = 0;
+    if(kulcItemSet >= minCorr){
+      if(HUprefixList.count(pi) != 0){
+        CoHUPs.insert(itemSet);
+        search(itemSet, CoUTListOfItemSet, minUtil, minCorr);
+      }else{
+        // Utility of itemset and pu of item set
+        int uItemSet = 0, puItemSet = 0;
+        for(auto co: CoUTList){
+          uItemSet += co.nodeUtility;
+
+          for(auto p: co.prefixPath){
+            puItemSet += p.second;
+          }
+        }
+        
+        if(uItemSet >= minUtil){
+          CoHUPs.insert(itemSet);
+        }
+
+        if(uItemSet + puItemSet >= minUtil){
+          search(itemSet, CoUTListOfItemSet, minUtil, minCorr); 
+        }
+      }
+    }
+  }
+}
+
 // TODO: The return type
-int ECoHUPM(vector<Transaction> &Database, int minUtil, int minCorr, unordered_map<string, int> externalUtility, unordered_map<string, int> itemsSupport){
+void ECoHUPM(vector<Transaction> &Database, int minUtil, int minCorr, unordered_map<string, int> externalUtility, unordered_map<string, int> itemsSupport){
+  
 
   PrintOldDatabase(Database);
 
@@ -338,9 +395,30 @@ int ECoHUPM(vector<Transaction> &Database, int minUtil, int minCorr, unordered_m
       for(auto p: co.prefixPath) cout <<  "(" << p.first << " " << p.second << ") ";
       cout << endl;
     }
-    cout << endl;
 
-    // TODO: 7 to 11
+    // 7 to 11 lines in algorithm 2
+    int ux = 0, pux = 0;
+    for(auto co: CoUTList){
+      ux += co.nodeUtility;
+
+      for(auto p: co.prefixPath){
+        pux += p.second;
+      }
+    }
+
+    cout << "ux: " << ux << endl;
+    cout << "pux: " << pux << endl;
+
+    // if ux + pux is less than correlated utility then x and it's superset will not be COHUIPM
+    if(ux >= minUtil){
+     CoHUPs.insert(X); 
+    }
+
+    if(ux + pux >= minUtil){
+      search(X, CoUTList, minUtil, minCorr);
+    }
+
+    cout << endl;
   }
 
   cout << "############################" << endl;
@@ -353,8 +431,8 @@ int main() {
   // We have to also decide the minimum utility
   int minUtil = 90;
 
-  // TODO: What to put it here
-  int minCorr = 10;
+  // Page 10
+  int minCorr = 0.4;
 
   // We have a database which has transactions, each transaction has list of
   // items with label and quantity associated with it
@@ -384,7 +462,7 @@ int main() {
       {"a", 8}, {"b", 4}, {"c", 10}, {"d", 9}, {"e", 4}, {"f", 3}, {"g", 2},
   };
 
-  auto coHUPs = ECoHUPM(Database, minUtil, minCorr, externalUtility, itemsSupport);
+  ECoHUPM(Database, minUtil, minCorr, externalUtility, itemsSupport);
 
   return 0;
 }
