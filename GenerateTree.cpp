@@ -273,6 +273,18 @@ vector<CoUTListItem> getCoUTList(string label){
   return CoUTList;
 }
 
+// TODO: How to calculate this
+int getItemSetKulc(string itemSet){
+  int kulc = 0;
+
+  // kulc a, b is made up of support
+  // ((support(a, b) / support(a)) + (support(a, b) / support(b))) / 2
+  // here 2 is number of items in the itemSet
+
+  // support(a) = count of transaction with a / total transaction
+
+  return kulc;
+}
 
 void search(string X, vector<CoUTListItem> &CoUTList, int minUtil, int minCorr){
   // TODO: is the below structure correct, it stores label
@@ -298,8 +310,7 @@ void search(string X, vector<CoUTListItem> &CoUTList, int minUtil, int minCorr){
     // TODO: Scan the CoUTlis(X) to construct the CoUTlist(itemset)
     vector<CoUTListItem> CoUTListOfItemSet;
 
-    // TODO: How ot calculate this
-    int kulcItemSet = 0;
+    int kulcItemSet = getItemSetKulc(itemSet);
     if(kulcItemSet >= minCorr){
       if(HUprefixList.count(pi) != 0){
         CoHUPs.insert(itemSet);
