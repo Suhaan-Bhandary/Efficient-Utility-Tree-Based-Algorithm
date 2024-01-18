@@ -277,21 +277,101 @@ vector<CoUTListItem> getCoUTList(string label) {
     return CoUTList;
 }
 
-// TODO: How to calculate this
-int getItemSetKulc(string itemSet) {
-    int kulc = 0;
+vector<string> split(const string &sentence, const string &separator) {
+    string currentToken = "";
+    vector<string> tokens;
+
+    int i = 0;
+    while (i < sentence.size()) {
+        // Check it matches with separator
+        bool isValidSeparator = true;
+        for (int k = 0; k < separator.size() && i + k < sentence.size(); k++) {
+            if (sentence[i + k] != separator[k]) {
+                isValidSeparator = false;
+                break;
+            }
+        }
+
+        if (isValidSeparator) {
+            i = i + separator.size();
+            tokens.push_back(currentToken);
+            currentToken.clear();
+        } else {
+            currentToken.push_back(sentence[i]);
+            i++;
+        }
+    }
+
+    if (currentToken.size() != 0) {
+        tokens.push_back(currentToken);
+    }
+
+    return tokens;
+}
+
+double getItemSetKulc(string itemSet, int totalTransaction) {
+    cout << endl;
+    cout << endl;
+    cout << "Kulc" << endl;
+
+    vector<string> labels = split(itemSet, "<<##>>");
+    cout << "labels: ";
+    for (auto label : labels) cout << label << " ";
+    cout << endl;
 
     // kulc a, b is made up of support
     // ((support(a, b) / support(a)) + (support(a, b) / support(b))) / 2
     // here 2 is number of items in the itemSet
 
     // support(a) = count of transaction with a / total transaction
+    // support(labels) = total number of transactions in which we have all
+    // labels / total transaction
 
+    // map<transaction id, occurrence count>
+    unordered_map<int, int> count;
+    vector<double> supports;
+    for (auto label : labels) {
+        double support = 0;
+        auto curr = previousPointer[label];
+        while (curr) {
+            support += curr->utList.size();
+
+            for (auto p : curr->utList) {
+                count[p.first]++;
+            }
+
+            curr = curr->interLink;
+        }
+
+        cout << "count of " << label << " : " << support << endl;
+        support = support / totalTransaction;
+        cout << "support of " << label << " : " << support << endl;
+        supports.push_back(support);
+    }
+
+    double supportOfLabels = 0;
+    for (auto p : count) {
+        if (p.second == labels.size()) {
+            supportOfLabels++;
+        }
+    }
+
+    cout << "count of ab: " << supportOfLabels << endl;
+    supportOfLabels = supportOfLabels / totalTransaction;
+    cout << "support of ab: " << supportOfLabels << endl;
+
+    // Final kulc calculation
+    double kulc = 0;
+    for (auto support : supports) {
+        kulc += ((double)supportOfLabels / support);
+    }
+
+    kulc /= (double)labels.size();
     return kulc;
 }
 
-void search(string X, vector<CoUTListItem> &CoUTList, int minUtil,
-            int minCorr) {
+void search(string X, vector<CoUTListItem> &CoUTList, int minUtil, int minCorr,
+            int totalTransaction) {
     // TODO: is the below structure correct, it stores label
     unordered_set<string> HUprefixList, prefixList;
 
@@ -310,16 +390,17 @@ void search(string X, vector<CoUTListItem> &CoUTList, int minUtil,
     }
 
     for (auto pi : prefixList) {
-        string itemSet = pi + "," + X;
+        string itemSet = pi + "<<##>>" + X;
 
         // TODO: Scan the CoUTlis(X) to construct the CoUTlist(itemset)
         vector<CoUTListItem> CoUTListOfItemSet;
 
-        int kulcItemSet = getItemSetKulc(itemSet);
+        double kulcItemSet = getItemSetKulc(itemSet, totalTransaction);
         if (kulcItemSet >= minCorr) {
             if (HUprefixList.count(pi) != 0) {
                 CoHUPs.insert(itemSet);
-                search(itemSet, CoUTListOfItemSet, minUtil, minCorr);
+                search(itemSet, CoUTListOfItemSet, minUtil, minCorr,
+                       totalTransaction);
             } else {
                 // Utility of itemset and pu of item set
                 int uItemSet = 0, puItemSet = 0;
@@ -336,7 +417,8 @@ void search(string X, vector<CoUTListItem> &CoUTList, int minUtil,
                 }
 
                 if (uItemSet + puItemSet >= minUtil) {
-                    search(itemSet, CoUTListOfItemSet, minUtil, minCorr);
+                    search(itemSet, CoUTListOfItemSet, minUtil, minCorr,
+                           totalTransaction);
                 }
             }
         }
@@ -353,6 +435,7 @@ void ECoHUPM(vector<Transaction> &Database, int minUtil, int minCorr,
     auto RD = generateRevisedDatabase(minUtil, Database, externalUtility,
                                       itemsSupport);
     PrintRevisedDatabase(RD);
+    int totalTransaction = RD.size();
 
     /*
       Search Space. The proposed ECoHUPM algorithm
@@ -433,7 +516,7 @@ void ECoHUPM(vector<Transaction> &Database, int minUtil, int minCorr,
         }
 
         if (ux + pux >= minUtil) {
-            search(X, CoUTList, minUtil, minCorr);
+            search(X, CoUTList, minUtil, minCorr, totalTransaction);
         }
 
         cout << endl;
