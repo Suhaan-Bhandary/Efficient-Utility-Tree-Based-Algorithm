@@ -383,7 +383,7 @@ vector<CoUTListItem> getCoUTListOfItemSet(
             auto newRow = row;
             newRow.nodeUtility += newRow.prefixPath[label];
             newRow.prefixPath.erase(label);
-            coUTList.push_back(row);
+            coUTList.push_back(newRow);
         }
     }
 
