@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <iostream>
+#include <set>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
@@ -9,6 +10,7 @@ using namespace std;
 // Input: Revised Database
 // Output: UTree
 
+// CoHUPs -> a,b  a,c
 unordered_set<string> CoHUPs;
 
 struct Item {
@@ -589,12 +591,29 @@ int main() {
 
     ECoHUPM(Database, minUtil, minCorr, externalUtility, itemsSupport);
 
+    cout << "#############Patterns#############" << endl;
+
     // display the result
+    set<vector<string>> st;
     for (auto s : CoHUPs) {
         vector<string> labels = split(s, "<<##>>");
+        sort(labels.begin(), labels.end());
+
+        st.insert(labels);
+
         for (auto label : labels) cout << label << " ";
         cout << endl;
     }
+    cout << endl << endl;
+
+    cout << "#############Patterns#############" << endl;
+    for (auto labels : st) {
+        for (auto label : labels) cout << label << " ";
+        cout << endl;
+    }
+
+    cout << "Patterns: " << st.size() << endl;
+    cout << "#################################" << endl;
 
     return 0;
 }
