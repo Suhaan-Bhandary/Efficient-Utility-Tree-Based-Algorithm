@@ -36,7 +36,7 @@ struct Transaction {
 
 struct CoUTListItem {
     int nodeNumber, nodeSupport, nodeUtility;
-    vector<pair<string, int>> prefixPath;
+    unordered_map<string, int> prefixPath;
 };
 
 /*
@@ -219,10 +219,10 @@ vector<pair<int, string>> getItemList(vector<Transaction> &Database,
     return result;
 }
 
-vector<pair<string, int>> getPrefixPath(UTreeNode *node,
-                                        unordered_set<int> &transactionsFound) {
+unordered_map<string, int> getPrefixPath(
+    UTreeNode *node, unordered_set<int> &transactionsFound) {
     int maxiCanTake = node->utList.size();
-    vector<pair<string, int>> path;
+    unordered_map<string, int> path;
 
     auto curr = node->parent;
     while (curr->parent != nullptr) {
@@ -234,7 +234,7 @@ vector<pair<string, int>> getPrefixPath(UTreeNode *node,
             weight += curr->utList[p];
         }
 
-        path.push_back({label, weight});
+        path[label] = weight;
 
         curr = curr->parent;
     }
@@ -370,6 +370,26 @@ double getItemSetKulc(string itemSet, int totalTransaction) {
     return kulc;
 }
 
+vector<CoUTListItem> getCoUTListOfItemSet(
+    string label, vector<CoUTListItem> previousCoUTList) {
+    // previousItemSet = previousItemCoUTList
+    // pi = getCoUTList(pi)
+
+    // take only those rows from previous nodes CoUTlist which has the label
+    vector<CoUTListItem> coUTList;
+
+    for (auto &row : previousCoUTList) {
+        if (row.prefixPath.count(label) != 0) {
+            auto newRow = row;
+            newRow.nodeUtility += newRow.prefixPath[label];
+            newRow.prefixPath.erase(label);
+            coUTList.push_back(row);
+        }
+    }
+
+    return coUTList;
+}
+
 void search(string X, vector<CoUTListItem> &CoUTList, int minUtil, int minCorr,
             int totalTransaction) {
     // TODO: is the below structure correct, it stores label
@@ -393,7 +413,8 @@ void search(string X, vector<CoUTListItem> &CoUTList, int minUtil, int minCorr,
         string itemSet = pi + "<<##>>" + X;
 
         // TODO: Scan the CoUTlis(X) to construct the CoUTlist(itemset)
-        vector<CoUTListItem> CoUTListOfItemSet;
+        vector<CoUTListItem> CoUTListOfItemSet =
+            getCoUTListOfItemSet(pi, CoUTList);
 
         double kulcItemSet = getItemSetKulc(itemSet, totalTransaction);
         if (kulcItemSet >= minCorr) {
@@ -567,6 +588,13 @@ int main() {
     };
 
     ECoHUPM(Database, minUtil, minCorr, externalUtility, itemsSupport);
+
+    // display the result
+    for (auto s : CoHUPs) {
+        vector<string> labels = split(s, "<<##>>");
+        for (auto label : labels) cout << label << " ";
+        cout << endl;
+    }
 
     return 0;
 }
