@@ -425,7 +425,7 @@ void search(string X, vector<CoUTListItem> &CoUTList, int minUtil, int minCorr,
             } else {
                 // Utility of itemset and pu of item set
                 int uItemSet = 0, puItemSet = 0;
-                for (auto co : CoUTList) {
+                for (auto co : CoUTListOfItemSet) {
                     uItemSet += co.nodeUtility;
 
                     for (auto p : co.prefixPath) {
