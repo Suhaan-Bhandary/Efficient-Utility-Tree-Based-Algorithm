@@ -124,7 +124,7 @@ UTreeNode *generateUTree(vector<Transaction> &RD) {
 }
 
 vector<Transaction> generateRevisedDatabase(
-    int minUtil, const vector<Transaction> &Database,
+    double minUtil, const vector<Transaction> &Database,
     unordered_map<string, int> &externalUtility,
     unordered_map<string, int> &itemsSupport) {
     // Create a revised database, new value = quantity * profit and sort the
@@ -322,7 +322,7 @@ double getItemSetKulc(string itemSet, int totalTransaction) {
     cout << endl;
 
     // kulc a, b is made up of support
-    // ((support(a, b) / support(a)) + (support(a, b) / support(b))) / 2
+    // ((support(a, b) / support(a)) + (support(a, b) / support(b))) / n
     // here 2 is number of items in the itemSet
 
     // support(a) = count of transaction with a / total transaction
@@ -380,7 +380,11 @@ vector<CoUTListItem> getCoUTListOfItemSet(
     // take only those rows from previous nodes CoUTlist which has the label
     vector<CoUTListItem> coUTList;
 
+    cout << label << endl;
+
     for (auto &row : previousCoUTList) {
+        cout << row.nodeUtility << endl;
+
         if (row.prefixPath.count(label) != 0) {
             auto newRow = row;
             newRow.nodeUtility += newRow.prefixPath[label];
@@ -392,8 +396,8 @@ vector<CoUTListItem> getCoUTListOfItemSet(
     return coUTList;
 }
 
-void search(string X, vector<CoUTListItem> &CoUTList, int minUtil, int minCorr,
-            int totalTransaction) {
+void search(string X, vector<CoUTListItem> &CoUTList, double minUtil,
+            double minCorr, int totalTransaction) {
     // TODO: is the below structure correct, it stores label
     unordered_set<string> HUprefixList, prefixList;
 
@@ -415,25 +419,36 @@ void search(string X, vector<CoUTListItem> &CoUTList, int minUtil, int minCorr,
         string itemSet = pi + "<<##>>" + X;
 
         // TODO: Scan the CoUTlis(X) to construct the CoUTlist(itemset)
+        cout << itemSet << endl;
         vector<CoUTListItem> CoUTListOfItemSet =
             getCoUTListOfItemSet(pi, CoUTList);
 
         double kulcItemSet = getItemSetKulc(itemSet, totalTransaction);
         if (kulcItemSet >= minCorr) {
+            cout << itemSet << " ## " << kulcItemSet << endl;
+
             if (HUprefixList.count(pi) != 0) {
                 CoHUPs.insert(itemSet);
                 search(itemSet, CoUTListOfItemSet, minUtil, minCorr,
                        totalTransaction);
             } else {
                 // Utility of itemset and pu of item set
+                cout << itemSet << endl;
+
                 int uItemSet = 0, puItemSet = 0;
                 for (auto co : CoUTListOfItemSet) {
                     uItemSet += co.nodeUtility;
+                    cout << co.nodeUtility << endl;
 
                     for (auto p : co.prefixPath) {
+                        cout << p.first << " ";
                         puItemSet += p.second;
                     }
+                    cout << endl;
                 }
+
+                // TODO: a b e is giving uItemSet
+                cout << itemSet << " ## " << uItemSet << endl;
 
                 if (uItemSet >= minUtil) {
                     CoHUPs.insert(itemSet);
@@ -449,7 +464,7 @@ void search(string X, vector<CoUTListItem> &CoUTList, int minUtil, int minCorr,
 }
 
 // TODO: The return type
-void ECoHUPM(vector<Transaction> &Database, int minUtil, int minCorr,
+void ECoHUPM(vector<Transaction> &Database, double minUtil, double minCorr,
              unordered_map<string, int> externalUtility,
              unordered_map<string, int> itemsSupport) {
     PrintOldDatabase(Database);
@@ -552,10 +567,10 @@ int main() {
     cout << "Tree Generator" << endl;
 
     // We have to also decide the minimum utility
-    int minUtil = 90;
+    double minUtil = 90;
 
     // Page 10
-    int minCorr = 0.4;
+    double minCorr = 0.4;
 
     // We have a database which has transactions, each transaction has list of
     // items with label and quantity associated with it
