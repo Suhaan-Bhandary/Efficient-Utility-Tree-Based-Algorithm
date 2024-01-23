@@ -405,11 +405,12 @@ void search(string X, vector<CoUTListItem> &CoUTList, double minUtil,
         for (auto p : xNode.prefixPath) {
             string label = p.first;
 
+            // TODO: what is this nodeUtility
             if (xNode.nodeUtility >= minUtil) {
                 HUprefixList.insert(label);
             }
 
-            if (HUprefixList.count(label) == 0) {
+            if (prefixList.count(label) == 0) {
                 prefixList.insert(label);
             }
         }
