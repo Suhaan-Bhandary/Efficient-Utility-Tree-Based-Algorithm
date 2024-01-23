@@ -358,9 +358,9 @@ double getItemSetKulc(string itemSet, int totalTransaction) {
         }
     }
 
-    cout << "count of ab: " << supportOfLabels << endl;
+    cout << "count of " << itemSet << " : " << supportOfLabels << endl;
     supportOfLabels = supportOfLabels / totalTransaction;
-    cout << "support of ab: " << supportOfLabels << endl;
+    cout << "support of " << itemSet << " : " << supportOfLabels << endl;
 
     // Final kulc calculation
     double kulc = 0;
