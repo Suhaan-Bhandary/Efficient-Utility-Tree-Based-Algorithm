@@ -1,0 +1,1949 @@
+Tree Generator
+1: (a, 2)(b, 6)(c, 2)(d, 2)(e, 6)
+2: (a, 3)(b, 2)(c, 3)(d, 2)
+3: (a, 3)(c, 2)(d, 2)(e, 3)(g, 3)
+4: (a, 4)(c, 4)(d, 4)(e, 12)(f, 12)
+5: (a, 3)(c, 4)(d, 3)(f, 4)
+6: (a, 2)(c, 3)(d, 2)(f, 3)
+7: (b, 2)(c, 4)(d, 2)
+8: (b, 5)(c, 3)(d, 3)(e, 5)
+9: (d, 3)(g, 1)
+10: (a, 6)(c, 5)
+11: (a, 2)(c, 2)
+
+ 1: TWU: 70	(c: 8) (d: 2) (a: 6) (b: 24) (e: 30) 
+ 2: TWU: 31	(c: 12) (d: 2) (a: 9) (b: 8) 
+ 3: TWU: 34	(c: 8) (d: 2) (a: 9) (e: 15) 
+ 4: TWU: 140	(c: 16) (d: 4) (a: 12) (e: 60) (f: 48) 
+ 5: TWU: 44	(c: 16) (d: 3) (a: 9) (f: 16) 
+ 6: TWU: 32	(c: 12) (d: 2) (a: 6) (f: 12) 
+ 7: TWU: 26	(c: 16) (d: 2) (b: 8) 
+ 8: TWU: 60	(c: 12) (d: 3) (b: 20) (e: 25) 
+ 9: TWU: 3	(d: 3) 
+10: TWU: 38	(c: 20) (a: 18) 
+11: TWU: 14	(c: 8) (a: 6) 
+
+Item List: (c, 10) (d, 9) (a, 8) (b, 4) (e, 4) (f, 3) 
+Generated UTree
+1 c
+1 d
+1 a
+1 b
+1 e
+UTList: b
+1 24, 
+UTList: a
+1 6, 
+UTList: d
+1 2, 
+UTList: c
+1 8, 
+UTList: 
+
+
+2 c
+2 d
+2 a
+2 b
+UTList: a
+2 9, 1 6, 
+UTList: d
+2 2, 1 2, 
+UTList: c
+2 12, 1 8, 
+UTList: 
+
+
+3 c
+3 d
+3 a
+3 e
+UTList: a
+3 9, 2 9, 1 6, 
+UTList: d
+3 2, 2 2, 1 2, 
+UTList: c
+3 8, 2 12, 1 8, 
+UTList: 
+
+
+4 c
+4 d
+4 a
+4 e
+4 f
+UTList: e
+4 60, 3 15, 
+UTList: a
+4 12, 3 9, 2 9, 1 6, 
+UTList: d
+4 4, 3 2, 2 2, 1 2, 
+UTList: c
+4 16, 3 8, 2 12, 1 8, 
+UTList: 
+
+
+5 c
+5 d
+5 a
+5 f
+UTList: a
+5 9, 4 12, 3 9, 2 9, 1 6, 
+UTList: d
+5 3, 4 4, 3 2, 2 2, 1 2, 
+UTList: c
+5 16, 4 16, 3 8, 2 12, 1 8, 
+UTList: 
+
+
+6 c
+6 d
+6 a
+6 f
+UTList: a
+6 6, 5 9, 4 12, 3 9, 2 9, 1 6, 
+UTList: d
+6 2, 5 3, 4 4, 3 2, 2 2, 1 2, 
+UTList: c
+6 12, 5 16, 4 16, 3 8, 2 12, 1 8, 
+UTList: 
+
+
+7 c
+7 d
+7 b
+UTList: d
+7 2, 6 2, 5 3, 4 4, 3 2, 2 2, 1 2, 
+UTList: c
+7 16, 6 12, 5 16, 4 16, 3 8, 2 12, 1 8, 
+UTList: 
+
+
+8 c
+8 d
+8 b
+8 e
+UTList: b
+8 20, 7 8, 
+UTList: d
+8 3, 7 2, 6 2, 5 3, 4 4, 3 2, 2 2, 1 2, 
+UTList: c
+8 12, 7 16, 6 12, 5 16, 4 16, 3 8, 2 12, 1 8, 
+UTList: 
+
+
+9 d
+UTList: 
+
+
+10 c
+10 a
+UTList: c
+10 20, 8 12, 7 16, 6 12, 5 16, 4 16, 3 8, 2 12, 1 8, 
+UTList: 
+
+
+11 c
+11 a
+UTList: c
+11 8, 10 20, 8 12, 7 16, 6 12, 5 16, 4 16, 3 8, 2 12, 1 8, 
+UTList: 
+
+
+Previous List
+UTList: a
+11 6, 10 18, 
+UTList: a
+6 6, 5 9, 4 12, 3 9, 2 9, 1 6, 
+############################
+Label: f 2
+Number: 1
+Support: 1
+Utility: 48
+Path: (c 16) (d 4) (a 12) (e 60) 
+Number: 2
+Support: 2
+Utility: 28
+Path: (c 28) (d 5) (a 15) 
+ux: 76
+pux: 140
+e<<##>>f
+e
+48
+28
+
+
+Kulc
+labels: e f 
+count of e : 4
+support of e : 0.363636
+count of f : 3
+support of f : 0.272727
+count of e<<##>>f : 1
+support of e<<##>>f : 0.0909091
+a<<##>>f
+a
+48
+28
+
+
+Kulc
+labels: a f 
+count of a : 8
+support of a : 0.727273
+count of f : 3
+support of f : 0.272727
+count of a<<##>>f : 3
+support of a<<##>>f : 0.272727
+a<<##>>f ## 0.6875
+a<<##>>f
+60
+c d e 
+43
+c d 
+a<<##>>f ## 103
+e<<##>>a<<##>>f
+e
+60
+43
+
+
+Kulc
+labels: e a f 
+count of e : 4
+support of e : 0.363636
+count of a : 8
+support of a : 0.727273
+count of f : 3
+support of f : 0.272727
+count of e<<##>>a<<##>>f : 1
+support of e<<##>>a<<##>>f : 0.0909091
+d<<##>>a<<##>>f
+d
+60
+43
+
+
+Kulc
+labels: d a f 
+count of d : 9
+support of d : 0.818182
+count of a : 8
+support of a : 0.727273
+count of f : 3
+support of f : 0.272727
+count of d<<##>>a<<##>>f : 3
+support of d<<##>>a<<##>>f : 0.272727
+d<<##>>a<<##>>f ## 0.569444
+d<<##>>a<<##>>f
+64
+c e 
+48
+c 
+d<<##>>a<<##>>f ## 112
+e<<##>>d<<##>>a<<##>>f
+e
+64
+48
+
+
+Kulc
+labels: e d a f 
+count of e : 4
+support of e : 0.363636
+count of d : 9
+support of d : 0.818182
+count of a : 8
+support of a : 0.727273
+count of f : 3
+support of f : 0.272727
+count of e<<##>>d<<##>>a<<##>>f : 1
+support of e<<##>>d<<##>>a<<##>>f : 0.0909091
+c<<##>>d<<##>>a<<##>>f
+c
+64
+48
+
+
+Kulc
+labels: c d a f 
+count of c : 10
+support of c : 0.909091
+count of d : 9
+support of d : 0.818182
+count of a : 8
+support of a : 0.727273
+count of f : 3
+support of f : 0.272727
+count of c<<##>>d<<##>>a<<##>>f : 3
+support of c<<##>>d<<##>>a<<##>>f : 0.272727
+c<<##>>d<<##>>a<<##>>f ## 0.502083
+c<<##>>d<<##>>a<<##>>f
+80
+e 
+76
+
+c<<##>>d<<##>>a<<##>>f ## 156
+e<<##>>c<<##>>d<<##>>a<<##>>f
+e
+80
+76
+
+
+Kulc
+labels: e c d a f 
+count of e : 4
+support of e : 0.363636
+count of c : 10
+support of c : 0.909091
+count of d : 9
+support of d : 0.818182
+count of a : 8
+support of a : 0.727273
+count of f : 3
+support of f : 0.272727
+count of e<<##>>c<<##>>d<<##>>a<<##>>f : 1
+support of e<<##>>c<<##>>d<<##>>a<<##>>f : 0.0909091
+c<<##>>a<<##>>f
+c
+60
+43
+
+
+Kulc
+labels: c a f 
+count of c : 10
+support of c : 0.909091
+count of a : 8
+support of a : 0.727273
+count of f : 3
+support of f : 0.272727
+count of c<<##>>a<<##>>f : 3
+support of c<<##>>a<<##>>f : 0.272727
+c<<##>>a<<##>>f ## 0.558333
+c<<##>>a<<##>>f
+76
+d e 
+71
+d 
+c<<##>>a<<##>>f ## 147
+e<<##>>c<<##>>a<<##>>f
+e
+76
+71
+
+
+Kulc
+labels: e c a f 
+count of e : 4
+support of e : 0.363636
+count of c : 10
+support of c : 0.909091
+count of a : 8
+support of a : 0.727273
+count of f : 3
+support of f : 0.272727
+count of e<<##>>c<<##>>a<<##>>f : 1
+support of e<<##>>c<<##>>a<<##>>f : 0.0909091
+d<<##>>c<<##>>a<<##>>f
+d
+76
+71
+
+
+Kulc
+labels: d c a f 
+count of d : 9
+support of d : 0.818182
+count of c : 10
+support of c : 0.909091
+count of a : 8
+support of a : 0.727273
+count of f : 3
+support of f : 0.272727
+count of d<<##>>c<<##>>a<<##>>f : 3
+support of d<<##>>c<<##>>a<<##>>f : 0.272727
+d<<##>>c<<##>>a<<##>>f ## 0.502083
+d<<##>>c<<##>>a<<##>>f
+80
+e 
+76
+
+d<<##>>c<<##>>a<<##>>f ## 156
+e<<##>>d<<##>>c<<##>>a<<##>>f
+e
+80
+76
+
+
+Kulc
+labels: e d c a f 
+count of e : 4
+support of e : 0.363636
+count of d : 9
+support of d : 0.818182
+count of c : 10
+support of c : 0.909091
+count of a : 8
+support of a : 0.727273
+count of f : 3
+support of f : 0.272727
+count of e<<##>>d<<##>>c<<##>>a<<##>>f : 1
+support of e<<##>>d<<##>>c<<##>>a<<##>>f : 0.0909091
+d<<##>>f
+d
+48
+28
+
+
+Kulc
+labels: d f 
+count of d : 9
+support of d : 0.818182
+count of f : 3
+support of f : 0.272727
+count of d<<##>>f : 3
+support of d<<##>>f : 0.272727
+d<<##>>f ## 0.666667
+d<<##>>f
+52
+c a e 
+33
+c a 
+d<<##>>f ## 85
+e<<##>>d<<##>>f
+e
+52
+33
+
+
+Kulc
+labels: e d f 
+count of e : 4
+support of e : 0.363636
+count of d : 9
+support of d : 0.818182
+count of f : 3
+support of f : 0.272727
+count of e<<##>>d<<##>>f : 1
+support of e<<##>>d<<##>>f : 0.0909091
+a<<##>>d<<##>>f
+a
+52
+33
+
+
+Kulc
+labels: a d f 
+count of a : 8
+support of a : 0.727273
+count of d : 9
+support of d : 0.818182
+count of f : 3
+support of f : 0.272727
+count of a<<##>>d<<##>>f : 3
+support of a<<##>>d<<##>>f : 0.272727
+a<<##>>d<<##>>f ## 0.569444
+a<<##>>d<<##>>f
+64
+c e 
+48
+c 
+a<<##>>d<<##>>f ## 112
+e<<##>>a<<##>>d<<##>>f
+e
+64
+48
+
+
+Kulc
+labels: e a d f 
+count of e : 4
+support of e : 0.363636
+count of a : 8
+support of a : 0.727273
+count of d : 9
+support of d : 0.818182
+count of f : 3
+support of f : 0.272727
+count of e<<##>>a<<##>>d<<##>>f : 1
+support of e<<##>>a<<##>>d<<##>>f : 0.0909091
+c<<##>>a<<##>>d<<##>>f
+c
+64
+48
+
+
+Kulc
+labels: c a d f 
+count of c : 10
+support of c : 0.909091
+count of a : 8
+support of a : 0.727273
+count of d : 9
+support of d : 0.818182
+count of f : 3
+support of f : 0.272727
+count of c<<##>>a<<##>>d<<##>>f : 3
+support of c<<##>>a<<##>>d<<##>>f : 0.272727
+c<<##>>a<<##>>d<<##>>f ## 0.502083
+c<<##>>a<<##>>d<<##>>f
+80
+e 
+76
+
+c<<##>>a<<##>>d<<##>>f ## 156
+e<<##>>c<<##>>a<<##>>d<<##>>f
+e
+80
+76
+
+
+Kulc
+labels: e c a d f 
+count of e : 4
+support of e : 0.363636
+count of c : 10
+support of c : 0.909091
+count of a : 8
+support of a : 0.727273
+count of d : 9
+support of d : 0.818182
+count of f : 3
+support of f : 0.272727
+count of e<<##>>c<<##>>a<<##>>d<<##>>f : 1
+support of e<<##>>c<<##>>a<<##>>d<<##>>f : 0.0909091
+c<<##>>d<<##>>f
+c
+52
+33
+
+
+Kulc
+labels: c d f 
+count of c : 10
+support of c : 0.909091
+count of d : 9
+support of d : 0.818182
+count of f : 3
+support of f : 0.272727
+count of c<<##>>d<<##>>f : 3
+support of c<<##>>d<<##>>f : 0.272727
+c<<##>>d<<##>>f ## 0.544444
+c<<##>>d<<##>>f
+68
+a e 
+61
+a 
+c<<##>>d<<##>>f ## 129
+e<<##>>c<<##>>d<<##>>f
+e
+68
+61
+
+
+Kulc
+labels: e c d f 
+count of e : 4
+support of e : 0.363636
+count of c : 10
+support of c : 0.909091
+count of d : 9
+support of d : 0.818182
+count of f : 3
+support of f : 0.272727
+count of e<<##>>c<<##>>d<<##>>f : 1
+support of e<<##>>c<<##>>d<<##>>f : 0.0909091
+a<<##>>c<<##>>d<<##>>f
+a
+68
+61
+
+
+Kulc
+labels: a c d f 
+count of a : 8
+support of a : 0.727273
+count of c : 10
+support of c : 0.909091
+count of d : 9
+support of d : 0.818182
+count of f : 3
+support of f : 0.272727
+count of a<<##>>c<<##>>d<<##>>f : 3
+support of a<<##>>c<<##>>d<<##>>f : 0.272727
+a<<##>>c<<##>>d<<##>>f ## 0.502083
+a<<##>>c<<##>>d<<##>>f
+80
+e 
+76
+
+a<<##>>c<<##>>d<<##>>f ## 156
+e<<##>>a<<##>>c<<##>>d<<##>>f
+e
+80
+76
+
+
+Kulc
+labels: e a c d f 
+count of e : 4
+support of e : 0.363636
+count of a : 8
+support of a : 0.727273
+count of c : 10
+support of c : 0.909091
+count of d : 9
+support of d : 0.818182
+count of f : 3
+support of f : 0.272727
+count of e<<##>>a<<##>>c<<##>>d<<##>>f : 1
+support of e<<##>>a<<##>>c<<##>>d<<##>>f : 0.0909091
+c<<##>>f
+c
+48
+28
+
+
+Kulc
+labels: c f 
+count of c : 10
+support of c : 0.909091
+count of f : 3
+support of f : 0.272727
+count of c<<##>>f : 3
+support of c<<##>>f : 0.272727
+c<<##>>f ## 0.65
+c<<##>>f
+64
+d a e 
+56
+d a 
+c<<##>>f ## 120
+e<<##>>c<<##>>f
+e
+64
+56
+
+
+Kulc
+labels: e c f 
+count of e : 4
+support of e : 0.363636
+count of c : 10
+support of c : 0.909091
+count of f : 3
+support of f : 0.272727
+count of e<<##>>c<<##>>f : 1
+support of e<<##>>c<<##>>f : 0.0909091
+a<<##>>c<<##>>f
+a
+64
+56
+
+
+Kulc
+labels: a c f 
+count of a : 8
+support of a : 0.727273
+count of c : 10
+support of c : 0.909091
+count of f : 3
+support of f : 0.272727
+count of a<<##>>c<<##>>f : 3
+support of a<<##>>c<<##>>f : 0.272727
+a<<##>>c<<##>>f ## 0.558333
+a<<##>>c<<##>>f
+76
+d e 
+71
+d 
+a<<##>>c<<##>>f ## 147
+e<<##>>a<<##>>c<<##>>f
+e
+76
+71
+
+
+Kulc
+labels: e a c f 
+count of e : 4
+support of e : 0.363636
+count of a : 8
+support of a : 0.727273
+count of c : 10
+support of c : 0.909091
+count of f : 3
+support of f : 0.272727
+count of e<<##>>a<<##>>c<<##>>f : 1
+support of e<<##>>a<<##>>c<<##>>f : 0.0909091
+d<<##>>a<<##>>c<<##>>f
+d
+76
+71
+
+
+Kulc
+labels: d a c f 
+count of d : 9
+support of d : 0.818182
+count of a : 8
+support of a : 0.727273
+count of c : 10
+support of c : 0.909091
+count of f : 3
+support of f : 0.272727
+count of d<<##>>a<<##>>c<<##>>f : 3
+support of d<<##>>a<<##>>c<<##>>f : 0.272727
+d<<##>>a<<##>>c<<##>>f ## 0.502083
+d<<##>>a<<##>>c<<##>>f
+80
+e 
+76
+
+d<<##>>a<<##>>c<<##>>f ## 156
+e<<##>>d<<##>>a<<##>>c<<##>>f
+e
+80
+76
+
+
+Kulc
+labels: e d a c f 
+count of e : 4
+support of e : 0.363636
+count of d : 9
+support of d : 0.818182
+count of a : 8
+support of a : 0.727273
+count of c : 10
+support of c : 0.909091
+count of f : 3
+support of f : 0.272727
+count of e<<##>>d<<##>>a<<##>>c<<##>>f : 1
+support of e<<##>>d<<##>>a<<##>>c<<##>>f : 0.0909091
+d<<##>>c<<##>>f
+d
+64
+56
+
+
+Kulc
+labels: d c f 
+count of d : 9
+support of d : 0.818182
+count of c : 10
+support of c : 0.909091
+count of f : 3
+support of f : 0.272727
+count of d<<##>>c<<##>>f : 3
+support of d<<##>>c<<##>>f : 0.272727
+d<<##>>c<<##>>f ## 0.544444
+d<<##>>c<<##>>f
+68
+a e 
+61
+a 
+d<<##>>c<<##>>f ## 129
+e<<##>>d<<##>>c<<##>>f
+e
+68
+61
+
+
+Kulc
+labels: e d c f 
+count of e : 4
+support of e : 0.363636
+count of d : 9
+support of d : 0.818182
+count of c : 10
+support of c : 0.909091
+count of f : 3
+support of f : 0.272727
+count of e<<##>>d<<##>>c<<##>>f : 1
+support of e<<##>>d<<##>>c<<##>>f : 0.0909091
+a<<##>>d<<##>>c<<##>>f
+a
+68
+61
+
+
+Kulc
+labels: a d c f 
+count of a : 8
+support of a : 0.727273
+count of d : 9
+support of d : 0.818182
+count of c : 10
+support of c : 0.909091
+count of f : 3
+support of f : 0.272727
+count of a<<##>>d<<##>>c<<##>>f : 3
+support of a<<##>>d<<##>>c<<##>>f : 0.272727
+a<<##>>d<<##>>c<<##>>f ## 0.502083
+a<<##>>d<<##>>c<<##>>f
+80
+e 
+76
+
+a<<##>>d<<##>>c<<##>>f ## 156
+e<<##>>a<<##>>d<<##>>c<<##>>f
+e
+80
+76
+
+
+Kulc
+labels: e a d c f 
+count of e : 4
+support of e : 0.363636
+count of a : 8
+support of a : 0.727273
+count of d : 9
+support of d : 0.818182
+count of c : 10
+support of c : 0.909091
+count of f : 3
+support of f : 0.272727
+count of e<<##>>a<<##>>d<<##>>c<<##>>f : 1
+support of e<<##>>a<<##>>d<<##>>c<<##>>f : 0.0909091
+
+Label: e 3
+Number: 1
+Support: 1
+Utility: 30
+Path: (c 8) (d 2) (a 6) (b 24) 
+Number: 2
+Support: 2
+Utility: 75
+Path: (c 24) (d 6) (a 21) 
+Number: 3
+Support: 1
+Utility: 25
+Path: (c 12) (d 3) (b 20) 
+ux: 130
+pux: 126
+b<<##>>e
+b
+30
+75
+25
+
+
+Kulc
+labels: b e 
+count of b : 4
+support of b : 0.363636
+count of e : 4
+support of e : 0.363636
+count of b<<##>>e : 2
+support of b<<##>>e : 0.181818
+b<<##>>e ## 0.5
+b<<##>>e
+54
+c d a 
+45
+c d 
+b<<##>>e ## 99
+a<<##>>b<<##>>e
+a
+54
+45
+
+
+Kulc
+labels: a b e 
+count of a : 8
+support of a : 0.727273
+count of b : 4
+support of b : 0.363636
+count of e : 4
+support of e : 0.363636
+count of a<<##>>b<<##>>e : 1
+support of a<<##>>b<<##>>e : 0.0909091
+d<<##>>b<<##>>e
+d
+54
+45
+
+
+Kulc
+labels: d b e 
+count of d : 9
+support of d : 0.818182
+count of b : 4
+support of b : 0.363636
+count of e : 4
+support of e : 0.363636
+count of d<<##>>b<<##>>e : 2
+support of d<<##>>b<<##>>e : 0.181818
+d<<##>>b<<##>>e ## 0.407407
+d<<##>>b<<##>>e
+56
+c a 
+48
+c 
+d<<##>>b<<##>>e ## 104
+a<<##>>d<<##>>b<<##>>e
+a
+56
+48
+
+
+Kulc
+labels: a d b e 
+count of a : 8
+support of a : 0.727273
+count of d : 9
+support of d : 0.818182
+count of b : 4
+support of b : 0.363636
+count of e : 4
+support of e : 0.363636
+count of a<<##>>d<<##>>b<<##>>e : 1
+support of a<<##>>d<<##>>b<<##>>e : 0.0909091
+c<<##>>d<<##>>b<<##>>e
+c
+56
+48
+
+
+Kulc
+labels: c d b e 
+count of c : 10
+support of c : 0.909091
+count of d : 9
+support of d : 0.818182
+count of b : 4
+support of b : 0.363636
+count of e : 4
+support of e : 0.363636
+count of c<<##>>d<<##>>b<<##>>e : 2
+support of c<<##>>d<<##>>b<<##>>e : 0.181818
+c<<##>>b<<##>>e
+c
+54
+45
+
+
+Kulc
+labels: c b e 
+count of c : 10
+support of c : 0.909091
+count of b : 4
+support of b : 0.363636
+count of e : 4
+support of e : 0.363636
+count of c<<##>>b<<##>>e : 2
+support of c<<##>>b<<##>>e : 0.181818
+a<<##>>e
+a
+30
+75
+25
+
+
+Kulc
+labels: a e 
+count of a : 8
+support of a : 0.727273
+count of e : 4
+support of e : 0.363636
+count of a<<##>>e : 3
+support of a<<##>>e : 0.272727
+a<<##>>e ## 0.5625
+a<<##>>e
+36
+c d b 
+96
+c d 
+a<<##>>e ## 132
+b<<##>>a<<##>>e
+b
+36
+96
+
+
+Kulc
+labels: b a e 
+count of b : 4
+support of b : 0.363636
+count of a : 8
+support of a : 0.727273
+count of e : 4
+support of e : 0.363636
+count of b<<##>>a<<##>>e : 1
+support of b<<##>>a<<##>>e : 0.0909091
+d<<##>>a<<##>>e
+d
+36
+96
+
+
+Kulc
+labels: d a e 
+count of d : 9
+support of d : 0.818182
+count of a : 8
+support of a : 0.727273
+count of e : 4
+support of e : 0.363636
+count of d<<##>>a<<##>>e : 3
+support of d<<##>>a<<##>>e : 0.272727
+d<<##>>a<<##>>e ## 0.486111
+b<<##>>d<<##>>a<<##>>e
+b
+38
+102
+
+
+Kulc
+labels: b d a e 
+count of b : 4
+support of b : 0.363636
+count of d : 9
+support of d : 0.818182
+count of a : 8
+support of a : 0.727273
+count of e : 4
+support of e : 0.363636
+count of b<<##>>d<<##>>a<<##>>e : 1
+support of b<<##>>d<<##>>a<<##>>e : 0.0909091
+c<<##>>d<<##>>a<<##>>e
+c
+38
+102
+
+
+Kulc
+labels: c d a e 
+count of c : 10
+support of c : 0.909091
+count of d : 9
+support of d : 0.818182
+count of a : 8
+support of a : 0.727273
+count of e : 4
+support of e : 0.363636
+count of c<<##>>d<<##>>a<<##>>e : 3
+support of c<<##>>d<<##>>a<<##>>e : 0.272727
+c<<##>>d<<##>>a<<##>>e ## 0.439583
+b<<##>>c<<##>>d<<##>>a<<##>>e
+b
+46
+126
+
+
+Kulc
+labels: b c d a e 
+count of b : 4
+support of b : 0.363636
+count of c : 10
+support of c : 0.909091
+count of d : 9
+support of d : 0.818182
+count of a : 8
+support of a : 0.727273
+count of e : 4
+support of e : 0.363636
+count of b<<##>>c<<##>>d<<##>>a<<##>>e : 1
+support of b<<##>>c<<##>>d<<##>>a<<##>>e : 0.0909091
+c<<##>>a<<##>>e
+c
+36
+96
+
+
+Kulc
+labels: c a e 
+count of c : 10
+support of c : 0.909091
+count of a : 8
+support of a : 0.727273
+count of e : 4
+support of e : 0.363636
+count of c<<##>>a<<##>>e : 3
+support of c<<##>>a<<##>>e : 0.272727
+c<<##>>a<<##>>e ## 0.475
+b<<##>>c<<##>>a<<##>>e
+b
+44
+120
+
+
+Kulc
+labels: b c a e 
+count of b : 4
+support of b : 0.363636
+count of c : 10
+support of c : 0.909091
+count of a : 8
+support of a : 0.727273
+count of e : 4
+support of e : 0.363636
+count of b<<##>>c<<##>>a<<##>>e : 1
+support of b<<##>>c<<##>>a<<##>>e : 0.0909091
+d<<##>>c<<##>>a<<##>>e
+d
+44
+120
+
+
+Kulc
+labels: d c a e 
+count of d : 9
+support of d : 0.818182
+count of c : 10
+support of c : 0.909091
+count of a : 8
+support of a : 0.727273
+count of e : 4
+support of e : 0.363636
+count of d<<##>>c<<##>>a<<##>>e : 3
+support of d<<##>>c<<##>>a<<##>>e : 0.272727
+d<<##>>c<<##>>a<<##>>e ## 0.439583
+b<<##>>d<<##>>c<<##>>a<<##>>e
+b
+46
+126
+
+
+Kulc
+labels: b d c a e 
+count of b : 4
+support of b : 0.363636
+count of d : 9
+support of d : 0.818182
+count of c : 10
+support of c : 0.909091
+count of a : 8
+support of a : 0.727273
+count of e : 4
+support of e : 0.363636
+count of b<<##>>d<<##>>c<<##>>a<<##>>e : 1
+support of b<<##>>d<<##>>c<<##>>a<<##>>e : 0.0909091
+d<<##>>e
+d
+30
+75
+25
+
+
+Kulc
+labels: d e 
+count of d : 9
+support of d : 0.818182
+count of e : 4
+support of e : 0.363636
+count of d<<##>>e : 4
+support of d<<##>>e : 0.363636
+d<<##>>e ## 0.722222
+d<<##>>e
+32
+c a b 
+81
+c a 
+28
+c b 
+d<<##>>e ## 141
+b<<##>>d<<##>>e
+b
+32
+81
+28
+
+
+Kulc
+labels: b d e 
+count of b : 4
+support of b : 0.363636
+count of d : 9
+support of d : 0.818182
+count of e : 4
+support of e : 0.363636
+count of b<<##>>d<<##>>e : 2
+support of b<<##>>d<<##>>e : 0.181818
+b<<##>>d<<##>>e ## 0.407407
+b<<##>>d<<##>>e
+56
+c a 
+48
+c 
+b<<##>>d<<##>>e ## 104
+a<<##>>b<<##>>d<<##>>e
+a
+56
+48
+
+
+Kulc
+labels: a b d e 
+count of a : 8
+support of a : 0.727273
+count of b : 4
+support of b : 0.363636
+count of d : 9
+support of d : 0.818182
+count of e : 4
+support of e : 0.363636
+count of a<<##>>b<<##>>d<<##>>e : 1
+support of a<<##>>b<<##>>d<<##>>e : 0.0909091
+c<<##>>b<<##>>d<<##>>e
+c
+56
+48
+
+
+Kulc
+labels: c b d e 
+count of c : 10
+support of c : 0.909091
+count of b : 4
+support of b : 0.363636
+count of d : 9
+support of d : 0.818182
+count of e : 4
+support of e : 0.363636
+count of c<<##>>b<<##>>d<<##>>e : 2
+support of c<<##>>b<<##>>d<<##>>e : 0.181818
+a<<##>>d<<##>>e
+a
+32
+81
+28
+
+
+Kulc
+labels: a d e 
+count of a : 8
+support of a : 0.727273
+count of d : 9
+support of d : 0.818182
+count of e : 4
+support of e : 0.363636
+count of a<<##>>d<<##>>e : 3
+support of a<<##>>d<<##>>e : 0.272727
+a<<##>>d<<##>>e ## 0.486111
+a<<##>>d<<##>>e
+38
+c b 
+102
+c 
+a<<##>>d<<##>>e ## 140
+b<<##>>a<<##>>d<<##>>e
+b
+38
+102
+
+
+Kulc
+labels: b a d e 
+count of b : 4
+support of b : 0.363636
+count of a : 8
+support of a : 0.727273
+count of d : 9
+support of d : 0.818182
+count of e : 4
+support of e : 0.363636
+count of b<<##>>a<<##>>d<<##>>e : 1
+support of b<<##>>a<<##>>d<<##>>e : 0.0909091
+c<<##>>a<<##>>d<<##>>e
+c
+38
+102
+
+
+Kulc
+labels: c a d e 
+count of c : 10
+support of c : 0.909091
+count of a : 8
+support of a : 0.727273
+count of d : 9
+support of d : 0.818182
+count of e : 4
+support of e : 0.363636
+count of c<<##>>a<<##>>d<<##>>e : 3
+support of c<<##>>a<<##>>d<<##>>e : 0.272727
+c<<##>>a<<##>>d<<##>>e ## 0.439583
+b<<##>>c<<##>>a<<##>>d<<##>>e
+b
+46
+126
+
+
+Kulc
+labels: b c a d e 
+count of b : 4
+support of b : 0.363636
+count of c : 10
+support of c : 0.909091
+count of a : 8
+support of a : 0.727273
+count of d : 9
+support of d : 0.818182
+count of e : 4
+support of e : 0.363636
+count of b<<##>>c<<##>>a<<##>>d<<##>>e : 1
+support of b<<##>>c<<##>>a<<##>>d<<##>>e : 0.0909091
+c<<##>>d<<##>>e
+c
+32
+81
+28
+
+
+Kulc
+labels: c d e 
+count of c : 10
+support of c : 0.909091
+count of d : 9
+support of d : 0.818182
+count of e : 4
+support of e : 0.363636
+count of c<<##>>d<<##>>e : 4
+support of c<<##>>d<<##>>e : 0.363636
+c<<##>>d<<##>>e ## 0.614815
+c<<##>>d<<##>>e
+40
+a b 
+105
+a 
+40
+b 
+c<<##>>d<<##>>e ## 185
+b<<##>>c<<##>>d<<##>>e
+b
+40
+105
+40
+
+
+Kulc
+labels: b c d e 
+count of b : 4
+support of b : 0.363636
+count of c : 10
+support of c : 0.909091
+count of d : 9
+support of d : 0.818182
+count of e : 4
+support of e : 0.363636
+count of b<<##>>c<<##>>d<<##>>e : 2
+support of b<<##>>c<<##>>d<<##>>e : 0.181818
+a<<##>>c<<##>>d<<##>>e
+a
+40
+105
+40
+
+
+Kulc
+labels: a c d e 
+count of a : 8
+support of a : 0.727273
+count of c : 10
+support of c : 0.909091
+count of d : 9
+support of d : 0.818182
+count of e : 4
+support of e : 0.363636
+count of a<<##>>c<<##>>d<<##>>e : 3
+support of a<<##>>c<<##>>d<<##>>e : 0.272727
+a<<##>>c<<##>>d<<##>>e ## 0.439583
+b<<##>>a<<##>>c<<##>>d<<##>>e
+b
+46
+126
+
+
+Kulc
+labels: b a c d e 
+count of b : 4
+support of b : 0.363636
+count of a : 8
+support of a : 0.727273
+count of c : 10
+support of c : 0.909091
+count of d : 9
+support of d : 0.818182
+count of e : 4
+support of e : 0.363636
+count of b<<##>>a<<##>>c<<##>>d<<##>>e : 1
+support of b<<##>>a<<##>>c<<##>>d<<##>>e : 0.0909091
+c<<##>>e
+c
+30
+75
+25
+
+
+Kulc
+labels: c e 
+count of c : 10
+support of c : 0.909091
+count of e : 4
+support of e : 0.363636
+count of c<<##>>e : 4
+support of c<<##>>e : 0.363636
+c<<##>>e ## 0.7
+c<<##>>e
+38
+d a b 
+99
+d a 
+37
+d b 
+c<<##>>e ## 174
+b<<##>>c<<##>>e
+b
+38
+99
+37
+
+
+Kulc
+labels: b c e 
+count of b : 4
+support of b : 0.363636
+count of c : 10
+support of c : 0.909091
+count of e : 4
+support of e : 0.363636
+count of b<<##>>c<<##>>e : 2
+support of b<<##>>c<<##>>e : 0.181818
+a<<##>>c<<##>>e
+a
+38
+99
+37
+
+
+Kulc
+labels: a c e 
+count of a : 8
+support of a : 0.727273
+count of c : 10
+support of c : 0.909091
+count of e : 4
+support of e : 0.363636
+count of a<<##>>c<<##>>e : 3
+support of a<<##>>c<<##>>e : 0.272727
+a<<##>>c<<##>>e ## 0.475
+b<<##>>a<<##>>c<<##>>e
+b
+44
+120
+
+
+Kulc
+labels: b a c e 
+count of b : 4
+support of b : 0.363636
+count of a : 8
+support of a : 0.727273
+count of c : 10
+support of c : 0.909091
+count of e : 4
+support of e : 0.363636
+count of b<<##>>a<<##>>c<<##>>e : 1
+support of b<<##>>a<<##>>c<<##>>e : 0.0909091
+d<<##>>a<<##>>c<<##>>e
+d
+44
+120
+
+
+Kulc
+labels: d a c e 
+count of d : 9
+support of d : 0.818182
+count of a : 8
+support of a : 0.727273
+count of c : 10
+support of c : 0.909091
+count of e : 4
+support of e : 0.363636
+count of d<<##>>a<<##>>c<<##>>e : 3
+support of d<<##>>a<<##>>c<<##>>e : 0.272727
+d<<##>>a<<##>>c<<##>>e ## 0.439583
+b<<##>>d<<##>>a<<##>>c<<##>>e
+b
+46
+126
+
+
+Kulc
+labels: b d a c e 
+count of b : 4
+support of b : 0.363636
+count of d : 9
+support of d : 0.818182
+count of a : 8
+support of a : 0.727273
+count of c : 10
+support of c : 0.909091
+count of e : 4
+support of e : 0.363636
+count of b<<##>>d<<##>>a<<##>>c<<##>>e : 1
+support of b<<##>>d<<##>>a<<##>>c<<##>>e : 0.0909091
+d<<##>>c<<##>>e
+d
+38
+99
+37
+
+
+Kulc
+labels: d c e 
+count of d : 9
+support of d : 0.818182
+count of c : 10
+support of c : 0.909091
+count of e : 4
+support of e : 0.363636
+count of d<<##>>c<<##>>e : 4
+support of d<<##>>c<<##>>e : 0.363636
+d<<##>>c<<##>>e ## 0.614815
+b<<##>>d<<##>>c<<##>>e
+b
+40
+105
+40
+
+
+Kulc
+labels: b d c e 
+count of b : 4
+support of b : 0.363636
+count of d : 9
+support of d : 0.818182
+count of c : 10
+support of c : 0.909091
+count of e : 4
+support of e : 0.363636
+count of b<<##>>d<<##>>c<<##>>e : 2
+support of b<<##>>d<<##>>c<<##>>e : 0.181818
+a<<##>>d<<##>>c<<##>>e
+a
+40
+105
+40
+
+
+Kulc
+labels: a d c e 
+count of a : 8
+support of a : 0.727273
+count of d : 9
+support of d : 0.818182
+count of c : 10
+support of c : 0.909091
+count of e : 4
+support of e : 0.363636
+count of a<<##>>d<<##>>c<<##>>e : 3
+support of a<<##>>d<<##>>c<<##>>e : 0.272727
+a<<##>>d<<##>>c<<##>>e ## 0.439583
+b<<##>>a<<##>>d<<##>>c<<##>>e
+b
+46
+126
+
+
+Kulc
+labels: b a d c e 
+count of b : 4
+support of b : 0.363636
+count of a : 8
+support of a : 0.727273
+count of d : 9
+support of d : 0.818182
+count of c : 10
+support of c : 0.909091
+count of e : 4
+support of e : 0.363636
+count of b<<##>>a<<##>>d<<##>>c<<##>>e : 1
+support of b<<##>>a<<##>>d<<##>>c<<##>>e : 0.0909091
+
+Label: b 2
+Number: 1
+Support: 2
+Utility: 32
+Path: (c 20) (d 4) (a 15) 
+Number: 2
+Support: 2
+Utility: 28
+Path: (c 28) (d 5) 
+ux: 60
+pux: 72
+a<<##>>b
+a
+32
+28
+
+
+Kulc
+labels: a b 
+count of a : 8
+support of a : 0.727273
+count of b : 4
+support of b : 0.363636
+count of a<<##>>b : 2
+support of a<<##>>b : 0.181818
+d<<##>>b
+d
+32
+28
+
+
+Kulc
+labels: d b 
+count of d : 9
+support of d : 0.818182
+count of b : 4
+support of b : 0.363636
+count of d<<##>>b : 4
+support of d<<##>>b : 0.363636
+d<<##>>b ## 0.722222
+d<<##>>b
+36
+c a 
+33
+c 
+d<<##>>b ## 69
+a<<##>>d<<##>>b
+a
+36
+33
+
+
+Kulc
+labels: a d b 
+count of a : 8
+support of a : 0.727273
+count of d : 9
+support of d : 0.818182
+count of b : 4
+support of b : 0.363636
+count of a<<##>>d<<##>>b : 2
+support of a<<##>>d<<##>>b : 0.181818
+c<<##>>d<<##>>b
+c
+36
+33
+
+
+Kulc
+labels: c d b 
+count of c : 10
+support of c : 0.909091
+count of d : 9
+support of d : 0.818182
+count of b : 4
+support of b : 0.363636
+count of c<<##>>d<<##>>b : 4
+support of c<<##>>d<<##>>b : 0.363636
+c<<##>>d<<##>>b ## 0.614815
+c<<##>>d<<##>>b
+56
+a 
+61
+
+c<<##>>d<<##>>b ## 117
+a<<##>>c<<##>>d<<##>>b
+a
+56
+61
+
+
+Kulc
+labels: a c d b 
+count of a : 8
+support of a : 0.727273
+count of c : 10
+support of c : 0.909091
+count of d : 9
+support of d : 0.818182
+count of b : 4
+support of b : 0.363636
+count of a<<##>>c<<##>>d<<##>>b : 2
+support of a<<##>>c<<##>>d<<##>>b : 0.181818
+c<<##>>b
+c
+32
+28
+
+
+Kulc
+labels: c b 
+count of c : 10
+support of c : 0.909091
+count of b : 4
+support of b : 0.363636
+count of c<<##>>b : 4
+support of c<<##>>b : 0.363636
+c<<##>>b ## 0.7
+c<<##>>b
+52
+d a 
+56
+d 
+c<<##>>b ## 108
+a<<##>>c<<##>>b
+a
+52
+56
+
+
+Kulc
+labels: a c b 
+count of a : 8
+support of a : 0.727273
+count of c : 10
+support of c : 0.909091
+count of b : 4
+support of b : 0.363636
+count of a<<##>>c<<##>>b : 2
+support of a<<##>>c<<##>>b : 0.181818
+d<<##>>c<<##>>b
+d
+52
+56
+
+
+Kulc
+labels: d c b 
+count of d : 9
+support of d : 0.818182
+count of c : 10
+support of c : 0.909091
+count of b : 4
+support of b : 0.363636
+count of d<<##>>c<<##>>b : 4
+support of d<<##>>c<<##>>b : 0.363636
+d<<##>>c<<##>>b ## 0.614815
+d<<##>>c<<##>>b
+56
+a 
+61
+
+d<<##>>c<<##>>b ## 117
+a<<##>>d<<##>>c<<##>>b
+a
+56
+61
+
+
+Kulc
+labels: a d c b 
+count of a : 8
+support of a : 0.727273
+count of d : 9
+support of d : 0.818182
+count of c : 10
+support of c : 0.909091
+count of b : 4
+support of b : 0.363636
+count of a<<##>>d<<##>>c<<##>>b : 2
+support of a<<##>>d<<##>>c<<##>>b : 0.181818
+
+Label: a 2
+Number: 1
+Support: 6
+Utility: 51
+Path: (c 72) (d 15) 
+Number: 2
+Support: 2
+Utility: 24
+Path: (c 28) 
+ux: 75
+pux: 115
+d<<##>>a
+d
+51
+24
+
+
+Kulc
+labels: d a 
+count of d : 9
+support of d : 0.818182
+count of a : 8
+support of a : 0.727273
+count of d<<##>>a : 6
+support of d<<##>>a : 0.545455
+d<<##>>a ## 0.708333
+d<<##>>a
+66
+c 
+d<<##>>a ## 66
+c<<##>>d<<##>>a
+c
+66
+
+
+Kulc
+labels: c d a 
+count of c : 10
+support of c : 0.909091
+count of d : 9
+support of d : 0.818182
+count of a : 8
+support of a : 0.727273
+count of c<<##>>d<<##>>a : 6
+support of c<<##>>d<<##>>a : 0.545455
+c<<##>>d<<##>>a ## 0.672222
+c<<##>>d<<##>>a
+138
+
+c<<##>>d<<##>>a ## 138
+c<<##>>a
+c
+51
+24
+
+
+Kulc
+labels: c a 
+count of c : 10
+support of c : 0.909091
+count of a : 8
+support of a : 0.727273
+count of c<<##>>a : 8
+support of c<<##>>a : 0.727273
+c<<##>>a ## 0.9
+c<<##>>a
+123
+d 
+52
+
+c<<##>>a ## 175
+d<<##>>c<<##>>a
+d
+123
+52
+
+
+Kulc
+labels: d c a 
+count of d : 9
+support of d : 0.818182
+count of c : 10
+support of c : 0.909091
+count of a : 8
+support of a : 0.727273
+count of d<<##>>c<<##>>a : 6
+support of d<<##>>c<<##>>a : 0.545455
+d<<##>>c<<##>>a ## 0.672222
+
+Label: d 2
+Number: 1
+Support: 8
+Utility: 20
+Path: (c 100) 
+Number: 2
+Support: 1
+Utility: 3
+Path: 
+ux: 23
+pux: 100
+c<<##>>d
+c
+20
+3
+
+
+Kulc
+labels: c d 
+count of c : 10
+support of c : 0.909091
+count of d : 9
+support of d : 0.818182
+count of c<<##>>d : 8
+support of c<<##>>d : 0.727273
+c<<##>>d ## 0.844444
+c<<##>>d
+120
+
+c<<##>>d ## 120
+
+Label: c 1
+Number: 1
+Support: 10
+Utility: 128
+Path: 
+ux: 128
+pux: 0
+
+############################
+#############Patterns#############
+c d 
+a c d 
+a c d 
+b c d 
+b c 
+a c d e 
+a c 
+a c e 
+a c f 
+a c d f 
+a c d f 
+c 
+a f 
+a c e 
+a e 
+a d e 
+a d f 
+b d e 
+c d f 
+a c f 
+b c d 
+a d e 
+c d f 
+c f 
+a c d f 
+a d f 
+c d e 
+a c d e 
+a c d f 
+d e 
+a c d f 
+e 
+b d e 
+a c d e 
+a c d f 
+a c d e 
+a c d e 
+c d e 
+a c d e 
+b e 
+c e 
+
+
+#############Patterns#############
+a c 
+a c d 
+a c d e 
+a c d f 
+a c e 
+a c f 
+a d e 
+a d f 
+a e 
+a f 
+b c 
+b c d 
+b d e 
+b e 
+c 
+c d 
+c d e 
+c d f 
+c e 
+c f 
+d e 
+e 
+Patterns: 22
+#################################
