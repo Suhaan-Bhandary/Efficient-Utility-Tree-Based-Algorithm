@@ -27,6 +27,9 @@ class UTree:
             self.insert_transaction(transaction, items_list, self.root)
 
     def insert_transaction(self, transaction: Transaction, items_list: list[Item], node: UTreeNode):
+        if len(items_list) == 0:
+            return
+
         first_item = items_list[0]
 
         if (first_item.label in node.children):
