@@ -1,6 +1,3 @@
-from re import U
-
-from ppretty import ppretty
 from RevisedDB import Item, RevisedDB, Transaction
 
 
