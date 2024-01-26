@@ -1,0 +1,10 @@
+milk, 6 
+bread, 4
+pen, 3
+paper, 1
+notebook, 10
+books, 5
+soap, 2
+powder, 3
+toothpaste, 4
+toothbrush, 3

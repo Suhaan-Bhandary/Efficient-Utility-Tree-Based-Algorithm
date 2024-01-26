@@ -7,7 +7,7 @@ class UTreeNode:
         self.parent = parent
         self.interLink = interLink
 
-        self.utList: dict[int, int] = {}
+        self.utList: dict[float, float] = {}
         self.children: dict[str, 'UTreeNode'] = {}
 
 

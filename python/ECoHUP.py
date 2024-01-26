@@ -13,11 +13,11 @@ class CoUTListItem:
         self.nodeNumber = -1
         self.nodeSupport = -1
         self.nodeUtility = -1
-        self.prefixPath: dict[str, int] = {}
+        self.prefixPath: dict[str, float] = {}
 
 
-def get_prefix_path(node: UTreeNode, transacton_found: set[int]) -> dict[str, int]:
-    path: dict[str, int] = {}
+def get_prefix_path(node: UTreeNode, transacton_found: set[float]) -> dict[str, float]:
+    path: dict[str, float] = {}
 
     currPointer = node.parent
     while currPointer != None and currPointer.parent != None:
@@ -39,7 +39,7 @@ def get_CoUTList(label: str, tree: UTree):
 
     currPointer = tree.previous_pointer[label]
     while currPointer != None:
-        transaction_found: set[int] = set()
+        transaction_found: set[float] = set()
         curr_node_utility = 0
 
         for key in currPointer.utList:
@@ -62,10 +62,10 @@ def get_CoUTList(label: str, tree: UTree):
     return CoUTList
 
 
-def get_itemset_kulc(itemSet: str, total_transaction: int, tree: UTree):
+def get_itemset_kulc(itemSet: str, total_transaction: float, tree: UTree):
     labels = itemSet.split(SEPERATOR)
 
-    count: dict[int, int] = {}
+    count: dict[float, float] = {}
     supports: list[float] = []
 
     for label in labels:
@@ -111,7 +111,7 @@ def get_CoUTList_of_itemset(label: str, previousCoUTList: list[CoUTListItem]) ->
     return coUTList
 
 
-def search(X: str, CoUTList: list[CoUTListItem], min_util: int, min_corr: float, total_transactions: int, tree: UTree):
+def search(X: str, CoUTList: list[CoUTListItem], min_util: float, min_corr: float, total_transactions: float, tree: UTree):
     HUprefixList: set[str] = set()
     prefixList:  set[str] = set()
 
@@ -151,8 +151,8 @@ def search(X: str, CoUTList: list[CoUTListItem], min_util: int, min_corr: float,
                            min_corr, total_transactions, tree)
 
 
-def ECoHUP(csv_transactions: str, csv_utils: str, min_util: int, min_corr: float):
-    revised_db = RevisedDB(csv_transactions, csv_utils, min_util, min_corr)
+def ECoHUP(transactions_file: str, utils_file: str, min_util: float, min_corr: float):
+    revised_db = RevisedDB(transactions_file, utils_file, min_util, min_corr)
     total_transactions = len(revised_db.item_list)
 
     utree = UTree(revised_db)
@@ -176,8 +176,8 @@ def ECoHUP(csv_transactions: str, csv_utils: str, min_util: int, min_corr: float
     return CoHUPs
 
 
-def getPatterns(csv_transactions: str, csv_utils: str, min_util: int, min_corr: float):
-    patterns = ECoHUP(csv_transactions, csv_utils, min_util, min_corr)
+def getPatterns(transactions_file: str, utils_file: str, min_util: float, min_corr: float):
+    patterns = ECoHUP(transactions_file, utils_file, min_util, min_corr)
 
     # Result
     result = set()

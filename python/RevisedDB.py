@@ -1,24 +1,24 @@
 class Item:
-    def __init__(self, label: str, value: int) -> None:
+    def __init__(self, label: str, value: float) -> None:
         self.label = label
         self.value = value
 
 
 class Transaction:
-    def __init__(self, id: int, twu: int, items: list[Item]) -> None:
+    def __init__(self, id: float, twu: float, items: list[Item]) -> None:
         self.id = id
         self.items = items
         self.twu = twu
 
 
 class RevisedDB:
-    def __init__(self, csv_transactions: str, csv_utils: str, min_util: int, min_corr: float) -> None:
+    def __init__(self, csv_transactions: str, csv_utils: str, min_util: float, min_corr: float) -> None:
         self.min_util = min_util
         self.min_corr = min_corr
 
         self.transactions: list[Transaction] = []
-        self.utils: dict[str, int] = {}
-        self.support: dict[str, int] = {}
+        self.utils: dict[str, float] = {}
+        self.support: dict[str, float] = {}
 
         # Create item list during db creation only
         self.item_list: list[str] = []
@@ -33,7 +33,7 @@ class RevisedDB:
         for line in lines:
             data = line.split(", ")
             label = data[0].strip()
-            utility = int(data[1].strip())
+            utility = float(data[1].strip())
             self.utils[label] = utility
 
     def read_transactions(self, path: str):
@@ -47,7 +47,7 @@ class RevisedDB:
             data = lines[line_index].split(":")
 
             labels = [item.strip() for item in data[0].split(' ')]
-            quantities = [int(util.strip()) for util in data[2].split(' ')]
+            quantities = [float(util.strip()) for util in data[2].split(' ')]
 
             twu = 0
             items: list[Item] = []

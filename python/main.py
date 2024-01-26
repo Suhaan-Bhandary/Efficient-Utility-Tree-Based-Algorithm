@@ -16,21 +16,19 @@ def main():
         return
 
     csv_folder = answers["csv_folder"]
-    csv_transactions = "./csv/{}/transactions.csv".format(csv_folder)
-    csv_utils = "./csv/{}/utils.csv".format(csv_folder)
+    transactions_file = "./csv/{}/transactions.txt".format(csv_folder)
+    utils_file = "./csv/{}/utils.txt".format(csv_folder)
 
     # Minimum utility and Minimum Correlation
-    min_util = int(input("Enter min util: "))
+    min_util = float(input("Enter min util: "))
     min_corr = float(input("Enter min corr: "))
 
     # Getting the patterns
-    result = getPatterns(csv_transactions, csv_utils, min_util, min_corr)
+    result = getPatterns(transactions_file, utils_file, min_util, min_corr)
     result.sort()
 
     print("\nPatterns: ", len(result))
-    for pattern in result:
-        print(pattern)
-    print()
+    print(result)
 
 
 if __name__ == "__main__":
