@@ -7,7 +7,7 @@ def main():
     answers = inquirer.prompt([
         inquirer.List(
             'csv_folder',
-            message="Select a csv folder as a input: ",
+            message="Select folder for input: ",
             choices=os.listdir("./csv"),
         )
     ])
