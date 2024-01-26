@@ -1,6 +1,7 @@
 import inquirer
 from inquirer.questions import os
 from ECoHUP import getPatterns
+import time
 
 
 def main():
@@ -25,8 +26,8 @@ def main():
 
     # Getting the patterns
     result = getPatterns(transactions_file, utils_file, min_util, min_corr)
-    result.sort()
 
+    result.sort()
     print("\nPatterns: ", len(result))
     print(result)
 

@@ -1,6 +1,7 @@
 from UTree import UTree, UTreeNode
 from RevisedDB import RevisedDB
 import copy
+import time
 
 
 # Global variable to store final result
@@ -10,9 +11,9 @@ CoHUPs: set[str] = set()
 
 class CoUTListItem:
     def __init__(self) -> None:
-        self.nodeNumber = -1
-        self.nodeSupport = -1
-        self.nodeUtility = -1
+        self.nodeNumber: float = -1
+        self.nodeSupport: float = -1
+        self.nodeUtility: float = -1
         self.prefixPath: dict[str, float] = {}
 
 
@@ -40,7 +41,7 @@ def get_CoUTList(label: str, tree: UTree):
     currPointer = tree.previous_pointer[label]
     while currPointer != None:
         transaction_found: set[float] = set()
-        curr_node_utility = 0
+        curr_node_utility: float = 0
 
         for key in currPointer.utList:
             transaction_found.add(key)
@@ -177,7 +178,12 @@ def ECoHUP(transactions_file: str, utils_file: str, min_util: float, min_corr: f
 
 
 def getPatterns(transactions_file: str, utils_file: str, min_util: float, min_corr: float):
+    start_time = time.time()
     patterns = ECoHUP(transactions_file, utils_file, min_util, min_corr)
+    end_time = time.time()
+
+    duration = end_time - start_time
+    print("Time:", duration)
 
     # Result
     result = set()
