@@ -3,6 +3,7 @@ import time
 from inquirer.questions import os
 from ECoHUP import ECoHUP, getPatterns
 import matplotlib.pyplot as plt
+import tabulate
 
 
 def main():
@@ -30,7 +31,8 @@ def main():
 
     result.sort()
     print("\nPatterns: ", len(result))
-    print(result)
+    print(tabulate.tabulate([[item] for item in result],
+                            ["Items"], "rounded_outline"))
     print()
 
     # Waiting the program
@@ -52,10 +54,15 @@ def main():
         return
 
     compulsoryItems: set[str] = set(answers["items"])
+    filtered_items = []
     for itemSet in result:
         is_subset = compulsoryItems.issubset(set(itemSet.split(" ")))
         if is_subset:
-            print(itemSet)
+            filtered_items.append([itemSet])
+
+    print("Filtered Item Set: ")
+    print(tabulate.tabulate(filtered_items, [
+          "Filtered Items"], "rounded_outline"))
 
 
 def test():
