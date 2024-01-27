@@ -9,9 +9,9 @@ def main():
     answers = inquirer.prompt([
         inquirer.List(
             'csv_folder',
-            message="Select folder for input: ",
+            message="Select folder for input",
             choices=os.listdir("./csv"),
-        )
+        ),
     ])
 
     if answers == None:
@@ -31,6 +31,31 @@ def main():
     result.sort()
     print("\nPatterns: ", len(result))
     print(result)
+    print()
+
+    # Waiting the program
+    input("Enter to continue...")
+
+    # Find the unique items
+    unique_items = sorted(list(
+        set([item for row in result for item in row.split(" ")])
+    ))
+
+    answers = inquirer.prompt([
+        inquirer.Checkbox('items',
+                          message="Items to Pair",
+                          choices=unique_items,
+                          ),
+    ])
+
+    if answers == None:
+        return
+
+    compulsoryItems: set[str] = set(answers["items"])
+    for itemSet in result:
+        is_subset = compulsoryItems.issubset(set(itemSet.split(" ")))
+        if is_subset:
+            print(itemSet)
 
 
 def test():
