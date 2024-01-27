@@ -1,7 +1,8 @@
 import inquirer
+import time
 from inquirer.questions import os
 from ECoHUP import ECoHUP, getPatterns
-import time
+import matplotlib.pyplot as plt
 
 
 def main():
@@ -35,19 +36,15 @@ def main():
 def test():
     transactions_file = "./csv/foodmart/transactions.txt"
     utils_file = "./csv/foodmart/utils.txt"
-    min_utils = [0.00001, 0.00005, 0.0001, 0.0005, 0.001]
-    min_corr = 0.1
+    min_util = 0.00010
+    min_corr = 0.2
 
-    runtime = []
-    for min_util in min_utils:
-        start_time = time.time()
-        ECoHUP(transactions_file, utils_file, min_util, min_corr)
-        end_time = time.time()
+    start_time = time.time()
+    ECoHUP(transactions_file, utils_file, min_util, min_corr)
+    end_time = time.time()
 
-        duration = end_time - start_time
-        runtime.append(duration)
-
-    print(runtime)
+    duration = end_time - start_time
+    print(duration)
 
 
 if __name__ == "__main__":
