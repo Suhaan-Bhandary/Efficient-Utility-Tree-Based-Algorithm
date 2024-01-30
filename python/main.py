@@ -68,16 +68,26 @@ def main():
 def test():
     transactions_file = "./csv/foodmart/transactions.txt"
     utils_file = "./csv/foodmart/utils.txt"
-    min_util = 0.00010
-    min_corr = 0.2
+    min_util: float = 1
+    min_corr: float = 0.2
 
-    start_time = time.time()
-    ECoHUP(transactions_file, utils_file, min_util, min_corr)
-    end_time = time.time()
+    pow = 1
+    for _ in range(10):
+        start_time = time.time()
 
-    duration = end_time - start_time
-    print(duration)
+        result = getPatterns(transactions_file, utils_file,
+                             min_util * pow, min_corr)
+        end_time = time.time()
+        duration = end_time - start_time
+
+        print("Patterns: ", len(result))
+        print("Duration: ", duration)
+        print(transactions_file, utils_file, min_util * pow, min_corr)
+
+        pow = pow * 10
+
+        print("#############\n")
 
 
 if __name__ == "__main__":
-    main()
+    test()

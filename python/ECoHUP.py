@@ -178,12 +178,11 @@ def ECoHUP(transactions_file: str, utils_file: str, min_util: float, min_corr: f
 
 
 def getPatterns(transactions_file: str, utils_file: str, min_util: float, min_corr: float):
-    start_time = time.time()
-    patterns = ECoHUP(transactions_file, utils_file, min_util, min_corr)
-    end_time = time.time()
+    # clear the global variable
+    global CoHUPs
+    CoHUPs = set()
 
-    duration = end_time - start_time
-    print("Time:", duration)
+    patterns = ECoHUP(transactions_file, utils_file, min_util, min_corr)
 
     # Result
     result = set()
