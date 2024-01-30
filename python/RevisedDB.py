@@ -16,8 +16,8 @@ class RevisedDB:
         self.min_util = min_util
         self.min_corr = min_corr
 
-        self.min_util = float('inf')
-        self.max_util = float('-inf')
+        self.lower_bound_util = float('inf')
+        self.upper_bound_util = float('-inf')
 
         self.transactions: list[Transaction] = []
         self.utils: dict[str, float] = {}
@@ -29,20 +29,22 @@ class RevisedDB:
         self.read_utils(csv_utils)
         self.read_transactions(csv_transactions)
 
+        print({"min_util": self.min_util, "min_corr": self.min_corr})
+
     def read_utils(self, path: str):
         with open(path, 'r') as f:
             lines = f.readlines()
 
-        self.min_util = float('inf')
-        self.max_util = float('-inf')
+        self.lower_bound_util = float('inf')
+        self.upper_bound_util = float('-inf')
 
         for line in lines:
             data = line.split(", ")
             label = data[0].strip()
             utility = float(data[1].strip())
 
-            self.min_util = min(self.min_util, utility)
-            self.max_util = max(self.max_util, utility)
+            self.lower_bound_util = min(self.lower_bound_util, utility)
+            self.upper_bound_util = max(self.upper_bound_util, utility)
 
             self.utils[label] = utility
 

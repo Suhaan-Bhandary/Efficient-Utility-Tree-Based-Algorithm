@@ -153,6 +153,8 @@ def search(X: str, CoUTList: list[CoUTListItem], min_util: float, min_corr: floa
 
 
 def ECoHUP(transactions_file: str, utils_file: str, min_util: float, min_corr: float):
+    print({"min_util": min_util, "min_corr": min_corr})
+
     revised_db = RevisedDB(transactions_file, utils_file, min_util, min_corr)
     total_transactions = len(revised_db.item_list)
 

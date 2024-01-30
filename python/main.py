@@ -68,21 +68,23 @@ def main():
 def test():
     transactions_file = "./csv/foodmart/transactions.txt"
     utils_file = "./csv/foodmart/utils.txt"
-    min_util: float = 1
+    min_util: float = 0.00001
     min_corr: float = 0.2
 
     pow = 1
     for _ in range(10):
         start_time = time.time()
 
+        new_min_util = min_util * pow
         result = getPatterns(transactions_file, utils_file,
-                             min_util * pow, min_corr)
+                             new_min_util, min_corr)
         end_time = time.time()
         duration = end_time - start_time
 
+        print("Files:", transactions_file, utils_file)
+        print("Min Util: {}, Min Corr: {}".format(new_min_util, min_corr))
         print("Patterns: ", len(result))
         print("Duration: ", duration)
-        print(transactions_file, utils_file, min_util * pow, min_corr)
 
         pow = pow * 10
 
