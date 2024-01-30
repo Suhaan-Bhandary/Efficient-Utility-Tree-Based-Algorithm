@@ -12,10 +12,9 @@ class UTreeNode:
 
 
 class UTree:
-    previous_pointer: dict[str, UTreeNode] = {}
-    root: UTreeNode | None = None
-
     def __init__(self, revised_db: RevisedDB) -> None:
+        self.previous_pointer: dict[str, UTreeNode] = {}
+        self.root: UTreeNode | None = None
         self.generateUTree(revised_db)
 
     def generateUTree(self, revised_db: RevisedDB):
