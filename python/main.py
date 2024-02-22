@@ -68,11 +68,11 @@ def main():
 def test():
     transactions_file = "./csv/foodmart/transactions.txt"
     utils_file = "./csv/foodmart/utils.txt"
-    min_util: float = 0.00001
+    min_util: float = 775581.0 * 0.001
     min_corr: float = 0.2
 
     pow = 1
-    for _ in range(10):
+    for _ in range(1):
         start_time = time.time()
 
         new_min_util = min_util * pow
@@ -91,5 +91,42 @@ def test():
         print("#############\n")
 
 
+def binary_search():
+    low = 0
+    high = 387790
+
+    transactions_file = "./csv/foodmart/transactions.txt"
+    utils_file = "./csv/foodmart/utils.txt"
+    min_corr: float = 0.2
+
+    required = 1942
+
+    while low <= high:
+        new_min_util = (low + high) / 2
+
+        start_time = time.time()
+        result = getPatterns(transactions_file, utils_file,
+                             new_min_util, min_corr)
+        end_time = time.time()
+        duration = end_time - start_time
+
+        print("Files:", transactions_file, utils_file)
+        print("Min Util: {}, Min Corr: {}".format(new_min_util, min_corr))
+        print("Patterns: ", len(result))
+        print("Duration: ", duration)
+
+        print("#############\n")
+
+        count = len(result)
+
+        if count > required:
+            low = new_min_util + 1
+        elif count < required:
+            high = new_min_util - 1
+        else:
+            print(new_min_util, ", Reached")
+            break
+
+
 if __name__ == "__main__":
-    test()
+    binary_search()

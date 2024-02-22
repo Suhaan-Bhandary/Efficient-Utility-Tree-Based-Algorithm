@@ -38,15 +38,20 @@ class RevisedDB:
         self.lower_bound_util = float('inf')
         self.upper_bound_util = float('-inf')
 
+        total_util = 0
         for line in lines:
             data = line.split(", ")
             label = data[0].strip()
             utility = float(data[1].strip())
 
+            total_util += utility
+
             self.lower_bound_util = min(self.lower_bound_util, utility)
             self.upper_bound_util = max(self.upper_bound_util, utility)
 
             self.utils[label] = utility
+
+        print("total: ", total_util)
 
     def read_transactions(self, path: str):
         with open(path, 'r') as f:
@@ -56,16 +61,14 @@ class RevisedDB:
 
         # Adding values to database
         for line_index in range(len(lines)):
-            data = lines[line_index].split(":")
-
-            labels = [item.strip() for item in data[0].split(' ')]
-            quantities = [float(util.strip()) for util in data[2].split(' ')]
+            items_in_transaction = lines[line_index].split(" ")
 
             twu = 0
             items: list[Item] = []
-            for i in range(len(labels)):
-                label = labels[i]
-                quantity = quantities[i]
+            for i in range(len(items_in_transaction)):
+                label, quantity = items_in_transaction[i].split(",")
+                quantity = int(quantity)
+
                 util = self.utils[label]
 
                 # Increment the count of label
