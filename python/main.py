@@ -30,9 +30,9 @@ def main():
     result = getPatterns(transactions_file, utils_file, min_util, min_corr)
 
     result.sort()
-    print("\nPatterns: ", len(result))
     print(tabulate.tabulate([[item] for item in result],
                             ["Items"], "rounded_outline"))
+    print("\nPatterns: ", len(result))
     print()
 
     # Waiting the program
@@ -129,4 +129,4 @@ def binary_search():
 
 
 if __name__ == "__main__":
-    binary_search()
+    main()
