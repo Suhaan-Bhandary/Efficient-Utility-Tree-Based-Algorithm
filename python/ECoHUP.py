@@ -1,3 +1,4 @@
+import time
 from UTree import UTree, UTreeNode
 from RevisedDB import RevisedDB
 import copy
@@ -176,6 +177,8 @@ def ECoHUP(dataset_path: str, min_util: float, min_corr: float):
     revised_db = RevisedDB(dataset_path, min_util, min_corr)
     total_transactions = len(revised_db.item_list)
 
+    start_time = time.time()
+
     print()
     print("Creating UTree")
     utree = UTree(revised_db)
@@ -196,6 +199,13 @@ def ECoHUP(dataset_path: str, min_util: float, min_corr: float):
 
         if ux + pux >= min_util:
             search(X, CoUTList, min_util, min_corr, total_transactions, utree)
+
+    end_time = time.time()
+    duration = end_time - start_time
+
+    print()
+    print("Duration:", duration)
+    print()
 
     return CoHUPs
 

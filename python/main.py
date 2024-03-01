@@ -5,7 +5,7 @@ import tabulate
 
 
 def main():
-    dataset_path = "./dataset/foodmart.txt"
+    dataset_path = "./dataset/example.txt"
 
     # Minimum utility and Minimum Correlation
     min_util = float(input("Enter min util: "))
