@@ -1,6 +1,8 @@
 from UTree import UTree, UTreeNode
 from RevisedDB import RevisedDB
 import copy
+import time
+
 
 # Global variable to store final result
 SEPERATOR = " <<##>> "
@@ -91,15 +93,13 @@ def get_itemset_kulc(itemSet: str, total_transaction: float, tree: UTree):
 
     kulc: float = 0
     for support in supports:
-        kulc += supportOfLabels / support
+        kulc += (supportOfLabels / support)
     kulc /= len(labels)
 
     return kulc
 
 
-def get_CoUTList_of_itemset(
-    label: str, previousCoUTList: list[CoUTListItem]
-) -> list[CoUTListItem]:
+def get_CoUTList_of_itemset(label: str, previousCoUTList: list[CoUTListItem]) -> list[CoUTListItem]:
     coUTList: list[CoUTListItem] = []
 
     for row in previousCoUTList:
@@ -112,16 +112,9 @@ def get_CoUTList_of_itemset(
     return coUTList
 
 
-def search(
-    X: str,
-    CoUTList: list[CoUTListItem],
-    min_util: float,
-    min_corr: float,
-    total_transactions: float,
-    tree: UTree,
-):
+def search(X: str, CoUTList: list[CoUTListItem], min_util: float, min_corr: float, total_transactions: float, tree: UTree):
     HUprefixList: set[str] = set()
-    prefixList: set[str] = set()
+    prefixList:  set[str] = set()
 
     for xNode in CoUTList:
         for key_label in xNode.prefixPath:
@@ -140,14 +133,8 @@ def search(
         if kulcItemSet >= min_corr:
             if pi in HUprefixList:
                 CoHUPs.add(itemSet)
-                search(
-                    itemSet,
-                    CoUTListOfItemSet,
-                    min_util,
-                    min_corr,
-                    total_transactions,
-                    tree,
-                )
+                search(itemSet, CoUTListOfItemSet, min_util,
+                       min_corr, total_transactions, tree)
             else:
                 uItemSet = 0
                 puItemSet = 0
@@ -161,25 +148,17 @@ def search(
                     CoHUPs.add(itemSet)
 
                 if uItemSet + puItemSet >= min_util:
-                    search(
-                        itemSet,
-                        CoUTListOfItemSet,
-                        min_util,
-                        min_corr,
-                        total_transactions,
-                        tree,
-                    )
+                    search(itemSet, CoUTListOfItemSet, min_util,
+                           min_corr, total_transactions, tree)
 
 
-def ECoHUP(dataset_path: str, min_util: float, min_corr: float):
-    print("Revising Database")
-    revised_db = RevisedDB(dataset_path, min_util, min_corr)
+def ECoHUP(transactions_file: str, utils_file: str, min_util: float, min_corr: float):
+    print({"min_util": min_util, "min_corr": min_corr})
+
+    revised_db = RevisedDB(transactions_file, utils_file, min_util, min_corr)
     total_transactions = len(revised_db.item_list)
 
-    print()
-    print("Creating UTree")
     utree = UTree(revised_db)
-    print("UTree Created")
 
     for X in revised_db.item_list[::-1]:
         CoUTList = get_CoUTList(X, utree)
@@ -200,12 +179,12 @@ def ECoHUP(dataset_path: str, min_util: float, min_corr: float):
     return CoHUPs
 
 
-def getPatterns(dataset_path: str, min_util: float, min_corr: float):
+def getPatterns(transactions_file: str, utils_file: str, min_util: float, min_corr: float):
     # clear the global variable
     global CoHUPs
     CoHUPs = set()
 
-    patterns = ECoHUP(dataset_path, min_util, min_corr)
+    patterns = ECoHUP(transactions_file, utils_file, min_util, min_corr)
 
     # Result
     result = set()

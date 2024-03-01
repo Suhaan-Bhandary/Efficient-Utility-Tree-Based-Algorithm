@@ -2,15 +2,13 @@ from RevisedDB import Item, RevisedDB, Transaction
 
 
 class UTreeNode:
-    def __init__(
-        self, label: str, parent: "UTreeNode | None", interLink: "UTreeNode | None"
-    ) -> None:
+    def __init__(self, label: str, parent: 'UTreeNode | None', interLink: 'UTreeNode | None') -> None:
         self.label: str = label
         self.parent = parent
         self.interLink = interLink
 
         self.utList: dict[float, float] = {}
-        self.children: dict[str, "UTreeNode"] = {}
+        self.children: dict[str, 'UTreeNode'] = {}
 
 
 class UTree:
@@ -27,22 +25,19 @@ class UTree:
 
             self.insert_transaction(transaction, items_list, self.root)
 
-    def insert_transaction(
-        self, transaction: Transaction, items_list: list[Item], node: UTreeNode
-    ):
+    def insert_transaction(self, transaction: Transaction, items_list: list[Item], node: UTreeNode):
         if len(items_list) == 0:
             return
 
         first_item = items_list[0]
 
-        if first_item.label in node.children:
+        if (first_item.label in node.children):
             node.children[first_item.label].utList[transaction.id] = first_item.value
 
             remain_items = items_list[1:]
             if len(remain_items) > 0:
                 self.insert_transaction(
-                    transaction, remain_items, node.children[first_item.label]
-                )
+                    transaction, remain_items, node.children[first_item.label])
         else:
             inter_link = None
             if first_item.label in self.previous_pointer:
