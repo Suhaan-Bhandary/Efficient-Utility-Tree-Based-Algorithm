@@ -14,7 +14,7 @@ def main():
     # Getting the patterns
     result = getPatterns(dataset_path, min_util, min_corr)
 
-    result.sort()
+    result.sort(key=lambda x: (len(x), x))
     print(tabulate.tabulate([[item] for item in result], ["Items"], "rounded_outline"))
     print("\nPatterns: ", len(result))
     print()
