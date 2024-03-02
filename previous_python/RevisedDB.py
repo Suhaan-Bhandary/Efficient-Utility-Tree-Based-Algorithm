@@ -12,12 +12,14 @@ class Transaction:
 
 
 class RevisedDB:
-    def __init__(self, csv_transactions: str, csv_utils: str, min_util: float, min_corr: float) -> None:
+    def __init__(
+        self, csv_transactions: str, csv_utils: str, min_util: float, min_corr: float
+    ) -> None:
         self.min_util = min_util
         self.min_corr = min_corr
 
-        self.lower_bound_util = float('inf')
-        self.upper_bound_util = float('-inf')
+        self.lower_bound_util = float("inf")
+        self.upper_bound_util = float("-inf")
 
         self.transactions: list[Transaction] = []
         self.utils: dict[str, float] = {}
@@ -32,11 +34,11 @@ class RevisedDB:
         print({"min_util": self.min_util, "min_corr": self.min_corr})
 
     def read_utils(self, path: str):
-        with open(path, 'r') as f:
+        with open(path, "r") as f:
             lines = f.readlines()
 
-        self.lower_bound_util = float('inf')
-        self.upper_bound_util = float('-inf')
+        self.lower_bound_util = float("inf")
+        self.upper_bound_util = float("-inf")
 
         total_util = 0
         for line in lines:
@@ -54,7 +56,7 @@ class RevisedDB:
         print("total: ", total_util)
 
     def read_transactions(self, path: str):
-        with open(path, 'r') as f:
+        with open(path, "r") as f:
             lines = f.readlines()
 
         labels_twu = {}
@@ -66,6 +68,8 @@ class RevisedDB:
             twu = 0
             items: list[Item] = []
             for i in range(len(items_in_transaction)):
+                print(items_in_transaction[i])
+                print(items_in_transaction[i].split(","))
                 label, quantity = items_in_transaction[i].split(",")
                 quantity = int(quantity)
 
@@ -96,20 +100,14 @@ class RevisedDB:
                     revised_labels.add(item.label)
 
             # sort the items with their support
-            revised_items.sort(
-                reverse=True,
-                key=lambda item: self.support[item.label]
-            )
+            revised_items.sort(reverse=True, key=lambda item: self.support[item.label])
 
             self.transactions[i].items = revised_items
             self.transactions[i].twu = revised_twu
 
         # Item list is all revised labels in descending order of support
         self.item_list = list(revised_labels)
-        self.item_list.sort(
-            reverse=True,
-            key=lambda item: self.support[item]
-        )
+        self.item_list.sort(reverse=True, key=lambda item: self.support[item])
 
     def get_item_list(self):
         return self.item_list

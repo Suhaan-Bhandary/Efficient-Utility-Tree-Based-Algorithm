@@ -1,0 +1,41 @@
+a b c:total:review*percentage 4*70
+
+Topics
+1. search course on user keywords using past user data
+2. recommend trachers to create couses based on past paterns of transactions
+3. recommend student to take next course on thier profile
+4. filter out good courses
+
+dsa_joy 4.3, 3
+dsa_mike 4, 3
+speaking_skill 3.2, 3
+web_development 4.1, 4
+data_science 4.8, 1
+networking 4.1, 1
+devops 4.1, 2
+linux 3.9, 5
+database 4.3, 2
+mern_stack 4.5, 2
+react 4.6, 3
+resume_building 3.1, 2
+dynamic_programming 4.9, 3
+
+
+Transactions:
+dsa_mike web_development linux
+speaking_skill resume_building web_development
+networking devops linux data_science
+web_development mern_stack react database
+dsa_mike dynamic_programming
+dsa_joy dynamic_programming linux
+mern_stack react speaking_skill database
+devops linux 
+speaking_skill dynamic_programming linux
+dsa_joy web_development react
+dsa_joy 
+dsa_mike resume_building
+
+Data-set:
+linux web_development dsa_mike::3.9*80 4.1*90 4*94
+
+
