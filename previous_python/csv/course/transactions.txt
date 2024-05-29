@@ -1,13 +1,4 @@
-dsa_mike,90 web_development,88 linux,80
-speaking_skill,70 resume_building,77 web_development,60
-networking,60 devops,50 linux,87 data_science,80
-web_development,20 mern_stack,10 react,5 database,10
-dsa_mike,85 dynamic_programming,50
-dsa_joy,20 dynamic_programming,80 linux,100
-mern_stack,44 react,54 speaking_skill,100 database,100
-devops,100 linux,100
-speaking_skill,80 dynamic_programming,90 linux,100
-dsa_joy,30 web_development,90 react,10
-dsa_joy,25
-dsa_mike,50 resume_building,30
-dsa_mike,100
+BAD_DSA,40 CNS,70
+GOOD_DSA,80 BAD_DSA,20 CNS,60
+CNS,80 DBMS,90
+DBMS,90 CNS,75 GOOD_DSA,95

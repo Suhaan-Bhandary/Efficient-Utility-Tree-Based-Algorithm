@@ -1,13 +1,4 @@
-dsa_joy, 4.3
-dsa_mike, 4
-speaking_skill, 3.2
-web_development, 4.1
-data_science, 4.8
-networking, 4.1
-devops, 4.1
-linux, 3.9
-database, 4.3
-mern_stack, 4.5
-react, 4.6
-resume_building, 3.1
-dynamic_programming, 4.9
+GOOD_DSA, 4
+BAD_DSA, 4.5
+CNS, 3.8
+DBMS, 4.2

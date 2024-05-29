@@ -31,6 +31,11 @@ class RevisedDB:
         self.read_utils(csv_utils)
         self.read_transactions(csv_transactions)
 
+        for transaction in self.transactions:
+            for item in transaction.items:
+                print("(", item.label, ",", item.value, ")", end=" ")
+            print("Twu:", transaction.twu)
+
         print({"min_util": self.min_util, "min_corr": self.min_corr})
 
     def read_utils(self, path: str):

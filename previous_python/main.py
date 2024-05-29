@@ -6,14 +6,57 @@ import matplotlib.pyplot as plt
 import tabulate
 
 
+def recommendations():
+    transactions_file = "./csv/course/transactions.txt"
+    utils_file = "./csv/course/utils.txt"
+
+    min_util = 200
+    min_corr = 0.4
+
+    patterns = getPatterns(transactions_file, utils_file, min_util, min_corr)
+    patterns.sort()
+
+    print("Pattern: ")
+    for pattern in patterns:
+        print(pattern)
+
+    recommendations = []
+
+    for pattern in patterns:
+        if len(recommendations) == 0:
+            recommendations.append(pattern)
+            continue
+
+        # get the last recommendation
+        last_recommendation = recommendations[-1]
+
+        def checkIfSubsetForSortedArray(sorted_subset, sorted_superset):
+            for i in range(len(sorted_subset)):
+                if sorted_subset[i] != sorted_superset[i]:
+                    return False
+            return True
+
+        isSubset = checkIfSubsetForSortedArray(last_recommendation, pattern)
+        if isSubset:
+            recommendations.pop()
+
+        recommendations.append(pattern)
+
+    print("\nRecommendations: ")
+    for recommendation in recommendations:
+        print(recommendation)
+
+
 def main():
-    answers = inquirer.prompt([
-        inquirer.List(
-            'csv_folder',
-            message="Select folder for input",
-            choices=os.listdir("./csv"),
-        ),
-    ])
+    answers = inquirer.prompt(
+        [
+            inquirer.List(
+                "csv_folder",
+                message="Select folder for input",
+                choices=os.listdir("./csv"),
+            ),
+        ]
+    )
 
     if answers == None:
         return
@@ -30,8 +73,7 @@ def main():
     result = getPatterns(transactions_file, utils_file, min_util, min_corr)
 
     result.sort()
-    print(tabulate.tabulate([[item] for item in result],
-                            ["Items"], "rounded_outline"))
+    print(tabulate.tabulate([[item] for item in result], ["Items"], "rounded_outline"))
     print("\nPatterns: ", len(result))
     print()
 
@@ -39,16 +81,19 @@ def main():
     input("Enter to continue...")
 
     # Find the unique items
-    unique_items = sorted(list(
-        set([item for row in result for item in row.split(" ")])
-    ))
+    unique_items = sorted(
+        list(set([item for row in result for item in row.split(" ")]))
+    )
 
-    answers = inquirer.prompt([
-        inquirer.Checkbox('items',
-                          message="Items to Pair",
-                          choices=unique_items,
-                          ),
-    ])
+    answers = inquirer.prompt(
+        [
+            inquirer.Checkbox(
+                "items",
+                message="Items to Pair",
+                choices=unique_items,
+            ),
+        ]
+    )
 
     if answers == None:
         return
@@ -61,8 +106,7 @@ def main():
             filtered_items.append([itemSet])
 
     print("Filtered Item Set: ")
-    print(tabulate.tabulate(filtered_items, [
-          "Filtered Items"], "rounded_outline"))
+    print(tabulate.tabulate(filtered_items, ["Filtered Items"], "rounded_outline"))
 
 
 def test():
@@ -76,8 +120,7 @@ def test():
         start_time = time.time()
 
         new_min_util = min_util * pow
-        result = getPatterns(transactions_file, utils_file,
-                             new_min_util, min_corr)
+        result = getPatterns(transactions_file, utils_file, new_min_util, min_corr)
         end_time = time.time()
         duration = end_time - start_time
 
@@ -105,8 +148,7 @@ def binary_search():
         new_min_util = (low + high) / 2
 
         start_time = time.time()
-        result = getPatterns(transactions_file, utils_file,
-                             new_min_util, min_corr)
+        result = getPatterns(transactions_file, utils_file, new_min_util, min_corr)
         end_time = time.time()
         duration = end_time - start_time
 
